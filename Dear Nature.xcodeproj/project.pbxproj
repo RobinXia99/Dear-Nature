@@ -94,6 +94,9 @@
 		0061DCF42796D1EA00C05351 /* Dear Nature */ = {
 			isa = PBXGroup;
 			children = (
+				0061DD1F2796D53500C05351 /* Models */,
+				0061DD202796D53C00C05351 /* Views */,
+				0061DD212796D54A00C05351 /* ViewModels */,
 				0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */,
 				0061DCF72796D1EA00C05351 /* ContentView.swift */,
 				0061DCF92796D1F400C05351 /* Assets.xcassets */,
@@ -125,6 +128,35 @@
 				0061DD122796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift */,
 			);
 			path = "Dear NatureUITests";
+			sourceTree = "<group>";
+		};
+		0061DD1F2796D53500C05351 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0061DD202796D53C00C05351 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0061DD262796D5F900C05351 /* Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0061DD212796D54A00C05351 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0061DD262796D5F900C05351 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
