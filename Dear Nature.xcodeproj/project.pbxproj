@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */; };
+		0061DCF82796D1EA00C05351 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF72796D1EA00C05351 /* ContentView.swift */; };
+		0061DCFA2796D1F400C05351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0061DCF92796D1F400C05351 /* Assets.xcassets */; };
+		0061DCFD2796D1F400C05351 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0061DCFC2796D1F400C05351 /* Preview Assets.xcassets */; };
+		0061DD072796D1F500C05351 /* Dear_NatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DD062796D1F500C05351 /* Dear_NatureTests.swift */; };
+		0061DD112796D1F600C05351 /* Dear_NatureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DD102796D1F600C05351 /* Dear_NatureUITests.swift */; };
+		0061DD132796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DD122796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0061DD032796D1F500C05351 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0061DCEA2796D1EA00C05351 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0061DCF12796D1EA00C05351;
+			remoteInfo = "Dear Nature";
+		};
+		0061DD0D2796D1F600C05351 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0061DCEA2796D1EA00C05351 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0061DCF12796D1EA00C05351;
+			remoteInfo = "Dear Nature";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0061DCF22796D1EA00C05351 /* Dear Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dear Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dear_NatureApp.swift; sourceTree = "<group>"; };
+		0061DCF72796D1EA00C05351 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0061DCF92796D1F400C05351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0061DCFC2796D1F400C05351 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0061DD022796D1F500C05351 /* Dear NatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dear NatureTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0061DD062796D1F500C05351 /* Dear_NatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dear_NatureTests.swift; sourceTree = "<group>"; };
+		0061DD0C2796D1F600C05351 /* Dear NatureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dear NatureUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0061DD102796D1F600C05351 /* Dear_NatureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dear_NatureUITests.swift; sourceTree = "<group>"; };
+		0061DD122796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dear_NatureUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0061DCEF2796D1EA00C05351 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DCFF2796D1F500C05351 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DD092796D1F600C05351 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0061DCE92796D1EA00C05351 = {
+			isa = PBXGroup;
+			children = (
+				0061DCF42796D1EA00C05351 /* Dear Nature */,
+				0061DD052796D1F500C05351 /* Dear NatureTests */,
+				0061DD0F2796D1F600C05351 /* Dear NatureUITests */,
+				0061DCF32796D1EA00C05351 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0061DCF32796D1EA00C05351 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0061DCF22796D1EA00C05351 /* Dear Nature.app */,
+				0061DD022796D1F500C05351 /* Dear NatureTests.xctest */,
+				0061DD0C2796D1F600C05351 /* Dear NatureUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0061DCF42796D1EA00C05351 /* Dear Nature */ = {
+			isa = PBXGroup;
+			children = (
+				0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */,
+				0061DCF72796D1EA00C05351 /* ContentView.swift */,
+				0061DCF92796D1F400C05351 /* Assets.xcassets */,
+				0061DCFB2796D1F400C05351 /* Preview Content */,
+			);
+			path = "Dear Nature";
+			sourceTree = "<group>";
+		};
+		0061DCFB2796D1F400C05351 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0061DCFC2796D1F400C05351 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0061DD052796D1F500C05351 /* Dear NatureTests */ = {
+			isa = PBXGroup;
+			children = (
+				0061DD062796D1F500C05351 /* Dear_NatureTests.swift */,
+			);
+			path = "Dear NatureTests";
+			sourceTree = "<group>";
+		};
+		0061DD0F2796D1F600C05351 /* Dear NatureUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0061DD102796D1F600C05351 /* Dear_NatureUITests.swift */,
+				0061DD122796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift */,
+			);
+			path = "Dear NatureUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0061DCF12796D1EA00C05351 /* Dear Nature */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0061DD162796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear Nature" */;
+			buildPhases = (
+				0061DCEE2796D1EA00C05351 /* Sources */,
+				0061DCEF2796D1EA00C05351 /* Frameworks */,
+				0061DCF02796D1EA00C05351 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dear Nature";
+			productName = "Dear Nature";
+			productReference = 0061DCF22796D1EA00C05351 /* Dear Nature.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0061DD012796D1F500C05351 /* Dear NatureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0061DD192796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear NatureTests" */;
+			buildPhases = (
+				0061DCFE2796D1F500C05351 /* Sources */,
+				0061DCFF2796D1F500C05351 /* Frameworks */,
+				0061DD002796D1F500C05351 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0061DD042796D1F500C05351 /* PBXTargetDependency */,
+			);
+			name = "Dear NatureTests";
+			productName = "Dear NatureTests";
+			productReference = 0061DD022796D1F500C05351 /* Dear NatureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0061DD0B2796D1F600C05351 /* Dear NatureUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0061DD1C2796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear NatureUITests" */;
+			buildPhases = (
+				0061DD082796D1F600C05351 /* Sources */,
+				0061DD092796D1F600C05351 /* Frameworks */,
+				0061DD0A2796D1F600C05351 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0061DD0E2796D1F600C05351 /* PBXTargetDependency */,
+			);
+			name = "Dear NatureUITests";
+			productName = "Dear NatureUITests";
+			productReference = 0061DD0C2796D1F600C05351 /* Dear NatureUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0061DCEA2796D1EA00C05351 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					0061DCF12796D1EA00C05351 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					0061DD012796D1F500C05351 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 0061DCF12796D1EA00C05351;
+					};
+					0061DD0B2796D1F600C05351 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 0061DCF12796D1EA00C05351;
+					};
+				};
+			};
+			buildConfigurationList = 0061DCED2796D1EA00C05351 /* Build configuration list for PBXProject "Dear Nature" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0061DCE92796D1EA00C05351;
+			productRefGroup = 0061DCF32796D1EA00C05351 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0061DCF12796D1EA00C05351 /* Dear Nature */,
+				0061DD012796D1F500C05351 /* Dear NatureTests */,
+				0061DD0B2796D1F600C05351 /* Dear NatureUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0061DCF02796D1EA00C05351 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0061DCFD2796D1F400C05351 /* Preview Assets.xcassets in Resources */,
+				0061DCFA2796D1F400C05351 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DD002796D1F500C05351 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DD0A2796D1F600C05351 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0061DCEE2796D1EA00C05351 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0061DCF82796D1EA00C05351 /* ContentView.swift in Sources */,
+				0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DCFE2796D1F500C05351 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0061DD072796D1F500C05351 /* Dear_NatureTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0061DD082796D1F600C05351 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0061DD112796D1F600C05351 /* Dear_NatureUITests.swift in Sources */,
+				0061DD132796D1F600C05351 /* Dear_NatureUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0061DD042796D1F500C05351 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0061DCF12796D1EA00C05351 /* Dear Nature */;
+			targetProxy = 0061DD032796D1F500C05351 /* PBXContainerItemProxy */;
+		};
+		0061DD0E2796D1F600C05351 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0061DCF12796D1EA00C05351 /* Dear Nature */;
+			targetProxy = 0061DD0D2796D1F600C05351 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0061DD142796D1F600C05351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0061DD152796D1F600C05351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0061DD172796D1F600C05351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Dear Nature/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-Nature";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0061DD182796D1F600C05351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Dear Nature/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-Nature";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0061DD1A2796D1F600C05351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-NatureTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dear Nature.app/Dear Nature";
+			};
+			name = Debug;
+		};
+		0061DD1B2796D1F600C05351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-NatureTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dear Nature.app/Dear Nature";
+			};
+			name = Release;
+		};
+		0061DD1D2796D1F600C05351 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-NatureUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dear Nature";
+			};
+			name = Debug;
+		};
+		0061DD1E2796D1F600C05351 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Dear-NatureUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dear Nature";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0061DCED2796D1EA00C05351 /* Build configuration list for PBXProject "Dear Nature" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0061DD142796D1F600C05351 /* Debug */,
+				0061DD152796D1F600C05351 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0061DD162796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear Nature" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0061DD172796D1F600C05351 /* Debug */,
+				0061DD182796D1F600C05351 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0061DD192796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear NatureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0061DD1A2796D1F600C05351 /* Debug */,
+				0061DD1B2796D1F600C05351 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0061DD1C2796D1F600C05351 /* Build configuration list for PBXNativeTarget "Dear NatureUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0061DD1D2796D1F600C05351 /* Debug */,
+				0061DD1E2796D1F600C05351 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0061DCEA2796D1EA00C05351 /* Project object */;
+}
