@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Dear_NatureApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
+            let authHandler = AuthManager()
             ContentView()
+                .environmentObject(authHandler)
         }
     }
 }
+
