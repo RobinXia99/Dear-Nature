@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 @main
 struct Dear_NatureApp: App {
@@ -14,13 +15,14 @@ struct Dear_NatureApp: App {
     init() {
         FirebaseApp.configure()
     }
-    
     var body: some Scene {
         WindowGroup {
-            let authHandler = AuthManager()
+            let authHandler = AuthViewModel()
             ContentView()
                 .environmentObject(authHandler)
         }
     }
 }
+
+
 

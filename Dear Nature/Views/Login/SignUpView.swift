@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignUpView: View {
 
+    @EnvironmentObject var authHandler: AuthViewModel
+    
     let green = Color("#27AF22")
     @Binding var isShowingSheet: Bool
     
@@ -36,18 +38,19 @@ struct SignUpView: View {
                 
                 SignUpForms(isShowingSheet: $isShowingSheet)
                 
+                
+                CustomDivider()
+                
                 Button(action: {
-                    
+                    authHandler.googleSignIn()
                 }, label: {
-                    Text("Sign up with Google")
+                    Text("Continue with Google")
                         .font(.title3)
                         .foregroundColor(.white)
                         .padding()
                         .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06).background(green)
                         .cornerRadius(50)
                 })
-                
-                CustomDivider()
                 
                 Spacer()
                 
@@ -61,7 +64,7 @@ struct SignUpView: View {
 
 struct SignUpForms: View {
     
-    @EnvironmentObject var authHandler: AuthManager
+    @EnvironmentObject var authHandler: AuthViewModel
     @State var email: String = ""
     @State var password: String = ""
     @State var fullName: String = ""
