@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    
+    @EnvironmentObject var authHandler: AuthViewModel
     @State private var isShowingSheet = false
     let blue = Color("#3066A5")
     let green = Color("#27AF22")
@@ -49,14 +49,15 @@ struct LoginView: View {
                 
                 Group {
                     Button(action: {
-                        
+                        authHandler.googleSignIn()
                     }, label: {
-                        Text("Sign in with Google")
+                        
+                        Text("Continue with Google")
                             .font(.title3)
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06).background(green)
-                            .cornerRadius(50)
+                            .cornerRadius(25)
                     })
                     
                     CustomDivider()
@@ -81,7 +82,7 @@ struct LoginView: View {
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
                             .background(blue)
-                            .cornerRadius(50)
+                            .cornerRadius(25)
                         
                         
                     }).sheet(isPresented: $isShowingSheet) {
@@ -113,7 +114,7 @@ struct LoginView: View {
 
 
 struct LoginStack: View {
-    @EnvironmentObject var authHandler: AuthManager
+    @EnvironmentObject var authHandler: AuthViewModel
     
     let blue = Color("#3066A5")
     let green = Color("#27AF22")
@@ -127,7 +128,7 @@ struct LoginStack: View {
             .foregroundColor(.black)
             .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
             .background(.white)
-            .cornerRadius(50)
+            .cornerRadius(25)
             .autocapitalization(.none)
         
         
@@ -136,7 +137,7 @@ struct LoginStack: View {
             .foregroundColor(.black)
             .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
             .background(.white)
-            .cornerRadius(50)
+            .cornerRadius(25)
             .autocapitalization(.none)
         
         
@@ -148,7 +149,7 @@ struct LoginStack: View {
                 .foregroundColor(.white)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
                 .background(blue)
-                .cornerRadius(50)
+                .cornerRadius(25)
         })
         
     }
@@ -159,6 +160,7 @@ struct CustomDivider: View {
     let color: Color = .white
     let thickness: CGFloat = 2
     var body: some View {
+        
         Rectangle()
             .fill(color)
             .frame(width: UIScreen.main.bounds.width * 0.9,height: thickness)
@@ -173,3 +175,6 @@ struct Login_Previews: PreviewProvider {
         LoginView()
     }
 }
+
+
+

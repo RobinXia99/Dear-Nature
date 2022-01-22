@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabView: View {
+
+    @EnvironmentObject var authHandler: AuthViewModel
     
     @State var selectedTab = 0
     
@@ -25,13 +27,13 @@ struct TabView: View {
                         switch selectedTab {
                             
                         case 0:
-                            Text("Home")
+                            Text("Home").navigationBarTitle("Home", displayMode: .large)
                         case 1:
-                            Text("Explore")
+                            Text("Explore").navigationBarTitle("Explore", displayMode: .large)
                         case 3:
                             Text("Maps")
                         case 4:
-                            Text("Profile")
+                            Text("Profile").navigationBarTitle("\(authHandler.session?.username ?? "@Username")", displayMode: .inline)
                         default:
                             Text("Photo Selector")
                             

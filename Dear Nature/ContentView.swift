@@ -9,26 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var authHandler: AuthManager
+    @EnvironmentObject var authHandler: AuthViewModel
+    
     
     var body: some View {
-        
         Group {
             ZStack {
-                
                 if !authHandler.isSignedIn {
                     LoginView()
                 } else {
                     TabView()
                 }
             }
-            
-            
-            
-        }
+        }.onAppear(perform: getUser)
         
-        
-        
+    }
+    
+    func getUser() {
+        authHandler.listen()
     }
     
     
@@ -38,7 +36,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let authHandler = AuthManager()
+        let authHandler = AuthViewModel()
         ContentView()
             .environmentObject(authHandler)
         
