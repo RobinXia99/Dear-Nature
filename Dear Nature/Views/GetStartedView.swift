@@ -10,8 +10,10 @@ import SwiftUI
 struct GetStartedView: View {
     
     var theme = Themes()
+    var db = DatabaseModel()
     @EnvironmentObject var authHandler: AuthViewModel
     @Binding var isNewUser: Bool
+    @State var username = ""
     
     var body: some View {
         ZStack {
@@ -38,7 +40,7 @@ struct GetStartedView: View {
                         
                         CustomDivider()
                         
-                        SelectUsernameView()
+                        SelectUsernameView(username: $username)
                         
                         Spacer()
                     }
@@ -47,7 +49,7 @@ struct GetStartedView: View {
                 .padding()
                 
                 Button(action: {
-                    isNewUser = false
+                    updateUsername()
                 }, label: {
                     Text("Continue")
                         .font(.title3)
@@ -73,6 +75,26 @@ struct GetStartedView: View {
             firstName = fullNameArr[0]
         }
         return firstName
+    }
+    
+    func updateUsername() {
+        guard authHandler.session != nil else {return}
+        
+        if let user = authHandler.session {
+            if user.username == "" {
+                var newUser = user
+                newUser.username = username
+                print("user updating")
+                db.createUserEntry(user: newUser) { result in
+                    if result == true {
+                        authHandler.session = newUser
+                        print("user updated")
+                        isNewUser = false
+                    }
+
+                }
+            }
+        }
     }
     
 }
@@ -111,7 +133,7 @@ struct SelectPhotoView: View {
 }
 
 struct SelectUsernameView: View {
-    @State var username = ""
+    @Binding var username: String
     var body: some View {
         VStack {
             Text("Username")

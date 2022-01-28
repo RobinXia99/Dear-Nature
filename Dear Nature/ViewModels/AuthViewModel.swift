@@ -72,13 +72,17 @@ class AuthViewModel: ObservableObject {
                                 username: "",
                                 email: email,
                                 profileImageUrl: "")
-                self.db.createUserEntry(user: user)
+                self.db.createUserEntry(user: user) { result in
+                    if result == true {
+                        self.session = user
+                        didSucceed.toggle()
+                        completion(didSucceed)
+                    }
+                    
+                }
             }
             
             
-            didSucceed.toggle()
-            
-            completion(didSucceed)
         }
         
     }
@@ -121,17 +125,25 @@ class AuthViewModel: ObservableObject {
                 
                 if let user = self.auth.currentUser {
                     
+                    if let isNewUser = authResult?.additionalUserInfo?.isNewUser {
+                        if isNewUser {
+                            let newUser = User(uid: user.uid,
+                                               fullName: user.displayName ?? "Full Name",
+                                               username: "",
+                                               email: user.email!,
+                                               profileImageUrl: "")
+                            self.db.createUserEntry(user: newUser) { result in
+                                if result == true {
+                                    self.session = newUser
+                                }
+                            }
+                        }
+                    }
                     
-                    let newUser = User(uid: user.uid,
-                                       fullName: user.displayName ?? "Full Name",
-                                       username: "",
-                                       email: user.email!,
-                                       profileImageUrl: "")
-                    self.db.createUserEntry(user: newUser)
                     
                     
-                    self.isSignedIn.toggle()
                 }
+                self.isSignedIn.toggle()
                 
             }
         }

@@ -14,7 +14,7 @@ class DatabaseModel {
     private let db = Firestore.firestore()
     private var auth = Auth.auth()
     
-    func createUserEntry(user: User) {
+    func createUserEntry(user: User, completion: @escaping (Bool) -> Void) {
         guard let currentUser = auth.currentUser else {return}
         
         let newUser = User(uid: currentUser.uid,
@@ -30,6 +30,9 @@ class DatabaseModel {
                           "profileImageUrl": newUser.profileImageUrl]
         
         db.collection("users").document(currentUser.uid).setData(newUserMap as [String : Any], merge: true)
+        
+        completion(true)
+        
 
     }
     

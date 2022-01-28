@@ -18,7 +18,7 @@ struct ProfileView: View {
             ZStack {
                 LinearGradient(gradient: themes.blueGradient, startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             }
-            .navigationBarTitle("@Username")
+            .navigationBarTitle("@\(authHandler.session?.username ?? "@Username")")
         }
     }
 }
