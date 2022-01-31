@@ -14,4 +14,8 @@ class Themes {
     
     let blackButtonColor = Color("#343434")
     
+    let blueButtonColor = Color("#3CA6D3")
+    
+    let blueTheme = Color("#3CA6D3")
+    
 }

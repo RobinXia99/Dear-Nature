@@ -57,7 +57,7 @@ struct LoginView: View {
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06).background(green)
-                            .cornerRadius(25)
+                            .cornerRadius(20)
                             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
                     })
                     
@@ -83,7 +83,7 @@ struct LoginView: View {
                             .padding()
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
                             .background(blue)
-                            .cornerRadius(25)
+                            .cornerRadius(20)
                             .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
                         
                         
@@ -130,7 +130,7 @@ struct LoginStack: View {
             .foregroundColor(.black)
             .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
             .background(.white)
-            .cornerRadius(25)
+            .cornerRadius(20)
             .autocapitalization(.none)
         
         
@@ -139,7 +139,7 @@ struct LoginStack: View {
             .foregroundColor(.black)
             .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
             .background(.white)
-            .cornerRadius(25)
+            .cornerRadius(20)
             .autocapitalization(.none)
         
         
@@ -151,7 +151,7 @@ struct LoginStack: View {
                 .foregroundColor(.white)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
                 .background(blue)
-                .cornerRadius(25)
+                .cornerRadius(20)
                 .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
         })
         

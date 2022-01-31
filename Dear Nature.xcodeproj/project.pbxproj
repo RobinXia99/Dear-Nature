@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001825BF27A5966500C9E3C6 /* ImagePicker.swift */; };
+		002F3C2927A718FA001C15DD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2827A718FA001C15DD /* Post.swift */; };
+		002F3C2D27A73B52001C15DD /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2C27A73B51001C15DD /* PostView.swift */; };
 		0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */; };
 		0061DCF82796D1EA00C05351 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF72796D1EA00C05351 /* ContentView.swift */; };
 		0061DCFA2796D1F400C05351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0061DCF92796D1F400C05351 /* Assets.xcassets */; };
@@ -31,6 +34,7 @@
 		0099605F279C8EA0001E39FA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0099605E279C8EA0001E39FA /* GoogleSignIn */; };
 		00996066279CD28E001E39FA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00996065279CD28E001E39FA /* ProfileView.swift */; };
 		00996068279CD7BB001E39FA /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00996067279CD7BB001E39FA /* Themes.swift */; };
+		00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */; };
 		00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0AECE279B09E8004CD820 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001825BF27A5966500C9E3C6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		002F3C2827A718FA001C15DD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		002F3C2C27A73B51001C15DD /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0061DCF22796D1EA00C05351 /* Dear Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dear Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dear_NatureApp.swift; sourceTree = "<group>"; };
 		0061DCF72796D1EA00C05351 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +81,7 @@
 		00996060279C9022001E39FA /* Dear-Nature-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dear-Nature-Info.plist"; sourceTree = SOURCE_ROOT; };
 		00996065279CD28E001E39FA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		00996067279CD7BB001E39FA /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F0AECE279B09E8004CD820 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,14 +139,16 @@
 		0061DCF42796D1EA00C05351 /* Dear Nature */ = {
 			isa = PBXGroup;
 			children = (
+				00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */,
+				0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */,
 				0061DD1F2796D53500C05351 /* Models */,
 				0061DD202796D53C00C05351 /* Views */,
 				0061DD212796D54A00C05351 /* ViewModels */,
-				0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */,
 				0061DCF92796D1F400C05351 /* Assets.xcassets */,
 				00996060279C9022001E39FA /* Dear-Nature-Info.plist */,
 				0061DD372796F21E00C05351 /* GoogleService-Info.plist */,
 				0061DCFB2796D1F400C05351 /* Preview Content */,
+				001825BF27A5966500C9E3C6 /* ImagePicker.swift */,
 			);
 			path = "Dear Nature";
 			sourceTree = "<group>";
@@ -175,6 +185,7 @@
 				0061DD3F2798680200C05351 /* User.swift */,
 				0061DD4927998A5900C05351 /* ColorExtensions.swift */,
 				00996067279CD7BB001E39FA /* Themes.swift */,
+				002F3C2827A718FA001C15DD /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +200,7 @@
 				00996065279CD28E001E39FA /* ProfileView.swift */,
 				00944AEA27A042E700C3E0E0 /* GetStartedView.swift */,
 				0091F0B527A2085800D1E22C /* HomeView.swift */,
+				002F3C2C27A73B51001C15DD /* PostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,8 +365,12 @@
 				00996068279CD7BB001E39FA /* Themes.swift in Sources */,
 				0061DD3A2796F8D700C05351 /* DatabaseModel.swift in Sources */,
 				0061DD44279896AE00C05351 /* TabView.swift in Sources */,
+				002F3C2D27A73B52001C15DD /* PostView.swift in Sources */,
+				00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */,
 				0061DD3C2796FB3F00C05351 /* LoginView.swift in Sources */,
+				002F3C2927A718FA001C15DD /* Post.swift in Sources */,
 				00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */,
+				001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */,
 				0061DD3E2797B1D800C05351 /* AuthViewModel.swift in Sources */,
 				0061DD4A27998A5900C05351 /* ColorExtensions.swift in Sources */,
 			);

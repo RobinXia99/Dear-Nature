@@ -14,21 +14,21 @@ class AuthViewModel: ObservableObject {
     
     let auth = Auth.auth()
     
-    @Published var isNewUser: Bool = false
+    var isNewUser: Bool = false
     @Published var session: User?
     @Published var isSignedIn: Bool = false
     var db = DatabaseModel()
     
     
-    func listen() {
+    func listenToUserChanges() {
         guard self.auth.currentUser != nil else {return}
         if let userId = auth.currentUser?.uid {
             db.getUser(userId: userId) { user, error in
-                print("getting user")
                 self.session = user
                 self.isSignedIn = true
             }
         }
+        
         
     }
     
@@ -42,14 +42,8 @@ class AuthViewModel: ObservableObject {
             }
             
             
-            if let _ = result?.additionalUserInfo?.isNewUser {
-                
-                self.isNewUser = true
-            }
-            
-            if let _ = self.auth.currentUser {
-                self.isSignedIn.toggle()
-            }
+            guard self.auth.currentUser != nil else { return }
+            self.listenToUserChanges()
             
         }
         
@@ -122,6 +116,7 @@ class AuthViewModel: ObservableObject {
                     print("Error signing in")
                     return
                 }
+                self.listenToUserChanges()
                 
                 if let user = self.auth.currentUser {
                     
@@ -141,9 +136,7 @@ class AuthViewModel: ObservableObject {
                     }
                     
                     
-                    
                 }
-                self.isSignedIn.toggle()
                 
             }
         }

@@ -17,12 +17,11 @@ struct HomeView: View {
         NavigationView {
             
             ZStack {
-                LinearGradient(gradient: themes.blueGradient, startPoint: .top, endPoint: .bottom).ignoresSafeArea()
-                
                 Button(action: {
                     do {
                         try authHandler.auth.signOut()
                         authHandler.isSignedIn = false
+                        authHandler.session = nil
                     } catch {
                         
                     }
@@ -40,7 +39,11 @@ struct HomeView: View {
             }
             .navigationBarTitle("Home")
             .fullScreenCover(isPresented: $isNewUser) {
-                GetStartedView(isNewUser: $isNewUser)
+                ZStack {
+                    Color.black.opacity(0.4).ignoresSafeArea()
+                    GetStartedView(isNewUser: $isNewUser).background(BackgroundClearView().ignoresSafeArea())
+                }
+                
             }
             
         }
@@ -57,6 +60,18 @@ struct HomeView: View {
         }
     }
     
+}
+
+struct BackgroundClearView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 struct HomeView_Previews: PreviewProvider {

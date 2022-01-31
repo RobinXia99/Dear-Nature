@@ -19,7 +19,6 @@ struct TabView: View {
         ZStack {
             
             
-            LinearGradient(gradient: themes.blueGradient, startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             
             switch selectedTab {
                 
@@ -32,7 +31,7 @@ struct TabView: View {
             case 4:
                 ProfileView()
             default:
-                Text("Photo Selector")
+                PostView()
                 
                 
             }

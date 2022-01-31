@@ -14,11 +14,13 @@ struct GetStartedView: View {
     @EnvironmentObject var authHandler: AuthViewModel
     @Binding var isNewUser: Bool
     @State var username = ""
+    @State var image = Image("white")
+    @State var inputImage: UIImage?
     
     var body: some View {
         ZStack {
             VStack {
-                LinearGradient(gradient: theme.blueGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black, radius: 4, x: 0, y: 2).overlay {
+                LinearGradient(gradient: theme.blueGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2).overlay {
                     
                     VStack {
                         Group {
@@ -35,7 +37,7 @@ struct GetStartedView: View {
                         
                         
                         
-                        SelectPhotoView()
+                        SelectPhotoView(image: $image, inputImage: $inputImage)
                             .padding()
                         
                         CustomDivider()
@@ -49,15 +51,15 @@ struct GetStartedView: View {
                 .padding()
                 
                 Button(action: {
-                    updateUsername()
+                    updateUserInfo()
                 }, label: {
                     Text("Continue")
                         .font(.title3)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding().frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.056)
-                        .background(theme.blackButtonColor)
-                        .cornerRadius(20)
-                        .shadow(color: .black, radius: 2, x: 0, y: 2)
+                        .background(.white)
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                 })
                     .padding()
             
@@ -77,19 +79,25 @@ struct GetStartedView: View {
         return firstName
     }
     
-    func updateUsername() {
+    func updateUserInfo() {
         guard authHandler.session != nil else {return}
         
         if let user = authHandler.session {
-            if user.username == "" {
+            if user.username == "" && username != "" {
+                
                 var newUser = user
                 newUser.username = username
                 print("user updating")
                 db.createUserEntry(user: newUser) { result in
+                    
                     if result == true {
+                        
                         authHandler.session = newUser
                         print("user updated")
                         isNewUser = false
+                        guard inputImage != nil else { return }
+                        db.saveProfilePictureToFirebase(image: inputImage)
+                        
                     }
 
                 }
@@ -97,39 +105,57 @@ struct GetStartedView: View {
         }
     }
     
+    
 }
 
 struct SelectPhotoView: View {
+    
     var theme = Themes()
-    var selectedImage = "white"
+    var db = DatabaseModel()
+    @State var showingImagePicker: Bool = false
+    @Binding var image: Image
+    @Binding var inputImage: UIImage?
+    
+    
     var body: some View {
         VStack {
             Text("Profile Picture")
                 .font(.title)
                 .foregroundColor(.white)
             
-            Image(selectedImage)
+            image
                 .resizable()
                 .frame(width: 150, height: 150)
-                .cornerRadius(20)
+                .cornerRadius(25)
                 .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: -3)
                 .padding(.bottom,10)
             
             Button(action: {
-                
+                showingImagePicker = true
             }, label: {
                 Text("Select Photo")
                     .font(.title3)
-                    .foregroundColor(.white)
-                    .padding().frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.04)
-                    .background(theme.blackButtonColor)
+                    .foregroundColor(.black)
+                    .padding().frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.042)
+                    .background(.white)
                     .cornerRadius(15)
-                    .shadow(color: .black, radius: 2, x: 0, y: 2)
+                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
             })
+            .sheet(isPresented: $showingImagePicker) {
+                ImagePicker(image: $inputImage)
+            }
+            .onChange(of: inputImage) { _ in loadImage() }
         }
         
         
     }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+
+    }
+    
 }
 
 struct SelectUsernameView: View {
@@ -146,10 +172,10 @@ struct SelectUsernameView: View {
                 .multilineTextAlignment(.center)
             TextField("", text: $username)
                 .foregroundColor(.black)
-                .padding().frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.056)
+                .padding().frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.05)
                 .background(.white)
-                .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: -3)
-                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: -1)
+                .cornerRadius(15)
                 .autocapitalization(.none)
             
             
