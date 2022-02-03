@@ -111,6 +111,19 @@ class DatabaseModel {
         
     }
     
+    func fetchUserPosts(completion: @escaping (_ document: QuerySnapshot?) -> Void) {
+        guard let currentUser = auth.currentUser else { return }
+        db.collection("posts").document(currentUser.uid).collection("userposts").getDocuments() { snapshot, error in
+            guard let snapshot = snapshot else {
+                if let error = error {
+                    print("error fetching posts: \(error)")
+                }
+                return
+            }
+            completion(snapshot)
+        }
+    }
+    
     }
     
     

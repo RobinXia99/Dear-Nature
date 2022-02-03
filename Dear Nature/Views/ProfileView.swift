@@ -12,6 +12,7 @@ struct ProfileView: View {
     
     @EnvironmentObject var authHandler: AuthViewModel
     @State var pickerSelection = "photos"
+    @StateObject var userProfileViewModel = UserProfileViewModel()
     
     var themes = Themes()
 
@@ -35,8 +36,19 @@ struct ProfileView: View {
                         Image(systemName: "map")
                             .tag("maps")
                     }.pickerStyle(SegmentedPickerStyle()).padding(5)
+                    
+                    
+                    if pickerSelection == "photos" {
+                        UserPostsGrid(userProfileViewModel: userProfileViewModel)
+                    } else {
+                        EmptyView()
+                    }
                 }
-            }.ignoresSafeArea()
+            }
+            .ignoresSafeArea()
+            .onAppear {
+                userProfileViewModel.getUserPosts()
+            }
 
             
             
@@ -88,7 +100,7 @@ struct UserInfoView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        print()
                     }, label: {
                         Text("Edit Profile")
                             .font(.body)
@@ -138,6 +150,29 @@ struct UserInfoView: View {
         
 
         
+    }
+}
+
+struct UserPostsGrid: View {
+    
+    @ObservedObject var userProfileViewModel : UserProfileViewModel
+    
+    var columnGrid: [GridItem] = [GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1)]
+    
+    var body: some View {
+        LazyVGrid(columns: columnGrid, spacing: 1) {
+            ForEach(userProfileViewModel.userPosts) { post in
+                WebImage(url: URL(string: post.postImage))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                    .clipped()
+                    .onTapGesture {
+                        
+                    }
+                
+            }
+        }
     }
 }
 

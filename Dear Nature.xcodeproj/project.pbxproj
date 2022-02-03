@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000A02C827AC447900BBC0E4 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A02C727AC447900BBC0E4 /* UserProfileViewModel.swift */; };
 		001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001825BF27A5966500C9E3C6 /* ImagePicker.swift */; };
 		001B021727AAF0BB0078D827 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B021627AAF0BB0078D827 /* StorageModel.swift */; };
 		001E21FE27A8B4F800132310 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 001E21FD27A8B4F800132310 /* SDWebImageSwiftUI */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000A02C727AC447900BBC0E4 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		001825BF27A5966500C9E3C6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		001B021627AAF0BB0078D827 /* StorageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
 		002F3C2827A718FA001C15DD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				0061DD3D2797B1D700C05351 /* AuthViewModel.swift */,
+				000A02C727AC447900BBC0E4 /* UserProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				002F3C2D27A73B52001C15DD /* PostView.swift in Sources */,
 				00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */,
 				0061DD3C2796FB3F00C05351 /* LoginView.swift in Sources */,
+				000A02C827AC447900BBC0E4 /* UserProfileViewModel.swift in Sources */,
 				002F3C2927A718FA001C15DD /* Post.swift in Sources */,
 				00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */,
 				001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */,
