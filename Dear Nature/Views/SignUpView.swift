@@ -50,6 +50,7 @@ struct SignUpView: View {
                         .padding()
                         .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06).background(green)
                         .cornerRadius(50)
+                        .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
                 })
                 
                 Spacer()
@@ -80,7 +81,7 @@ struct SignUpForms: View {
                 .foregroundColor(.black)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
                 .background(.white)
-                .cornerRadius(50)
+                .cornerRadius(20)
                 .autocapitalization(.none)
             
 
@@ -88,7 +89,7 @@ struct SignUpForms: View {
                 .foregroundColor(.black)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
                 .background(.white)
-                .cornerRadius(50)
+                .cornerRadius(20)
                 .autocapitalization(.none)
             
             
@@ -97,7 +98,7 @@ struct SignUpForms: View {
                 .foregroundColor(.black)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.056)
                 .background(.white)
-                .cornerRadius(50)
+                .cornerRadius(20)
                 .autocapitalization(.none)
             
             
@@ -116,7 +117,8 @@ struct SignUpForms: View {
                     .foregroundColor(.white)
                     .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
                     .background(blue)
-                    .cornerRadius(50)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 2)
             })
             
         }

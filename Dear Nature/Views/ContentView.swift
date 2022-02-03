@@ -26,7 +26,7 @@ struct ContentView: View {
     }
     
     func getUser() {
-        authHandler.listen()
+        authHandler.listenToUserChanges()
     }
     
     

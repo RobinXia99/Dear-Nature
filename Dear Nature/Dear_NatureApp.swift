@@ -11,6 +11,7 @@ import GoogleSignIn
 
 @main
 struct Dear_NatureApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     init() {
         FirebaseApp.configure()

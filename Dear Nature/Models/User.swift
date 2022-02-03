@@ -7,19 +7,12 @@
 
 import Foundation
 
-class User {
-    
-    var uid: String?
+public struct User: Codable {
+  
+    var uid: String
+    var fullName: String
     var username: String?
-    var email: String?
-    
-    init(uid: String?, username: String?, email: String?) {
-        
-        self.uid = uid
-        self.username = username
-        self.email = email
-        
-        
-    }
+    var email: String
+    var profileImageUrl: String?
     
 }

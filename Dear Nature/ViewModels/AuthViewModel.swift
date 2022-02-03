@@ -14,15 +14,21 @@ class AuthViewModel: ObservableObject {
     
     let auth = Auth.auth()
     
+    var isNewUser: Bool = false
     @Published var session: User?
-    var isSignedIn: Bool = false
+    @Published var isSignedIn: Bool = false
+    var db = DatabaseModel()
     
-    func listen() {
-        
-        if let user = self.auth.currentUser {
-            self.session = User(uid: user.uid, username: user.displayName, email: user.email)
-            self.isSignedIn.toggle()
+    
+    func listenToUserChanges() {
+        guard self.auth.currentUser != nil else {return}
+        if let userId = auth.currentUser?.uid {
+            db.getUser(userId: userId) { user, error in
+                self.session = user
+                self.isSignedIn = true
+            }
         }
+        
         
     }
     
@@ -36,15 +42,12 @@ class AuthViewModel: ObservableObject {
             }
             
             
-            if let user = self.auth.currentUser {
-                self.isSignedIn.toggle()
-                self.session = User (uid: user.uid, username: user.displayName, email: user.email)
-            }
-            
+            guard self.auth.currentUser != nil else { return }
+            self.listenToUserChanges()
             
         }
         
-
+        
     }
     
     func signUp(email: String, password: String, fullName: String, completion:@escaping (Bool) -> ()) {
@@ -56,9 +59,24 @@ class AuthViewModel: ObservableObject {
                 print("Error signing up")
                 return
             }
-            didSucceed.toggle()
             
-            completion(didSucceed)
+            if let newUser = result?.user {
+                let user = User(uid: newUser.uid,
+                                fullName: fullName,
+                                username: "",
+                                email: email,
+                                profileImageUrl: "")
+                self.db.createUserEntry(user: user) { result in
+                    if result == true {
+                        self.session = user
+                        didSucceed.toggle()
+                        completion(didSucceed)
+                    }
+                    
+                }
+            }
+            
+            
         }
         
     }
@@ -66,7 +84,7 @@ class AuthViewModel: ObservableObject {
     func googleSignIn() {
         
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
+        
         let config = GIDConfiguration(clientID: clientID)
         
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
@@ -75,32 +93,49 @@ class AuthViewModel: ObservableObject {
         
         
         GIDSignIn.sharedInstance.signIn(with: config, presenting: rootViewController) { [unowned self] user, error in
-
-          if let error = error {
-            // ...
-            return
-          }
-
-          guard
-            let authentication = user?.authentication,
-            let idToken = authentication.idToken
-          else {
-            return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: authentication.accessToken)
-
+            
+            if let error = error {
+                // ...
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                return
+            }
+            
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+            
             auth.signIn(with: credential) { authResult, error in
                 
                 guard authResult != nil && error == nil else {
                     print("Error signing in")
                     return
                 }
+                self.listenToUserChanges()
                 
                 if let user = self.auth.currentUser {
-                    self.isSignedIn.toggle()
-                    self.session = User (uid: user.uid, username: user.displayName, email: user.email)
+                    
+                    if let isNewUser = authResult?.additionalUserInfo?.isNewUser {
+                        if isNewUser {
+                            let newUser = User(uid: user.uid,
+                                               fullName: user.displayName ?? "Full Name",
+                                               username: "",
+                                               email: user.email!,
+                                               profileImageUrl: "")
+                            self.db.createUserEntry(user: newUser) { result in
+                                if result == true {
+                                    self.session = newUser
+                                }
+                            }
+                        }
+                    }
+                    
+                    
                 }
                 
             }
