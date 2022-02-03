@@ -20,7 +20,7 @@ struct GetStartedView: View {
     var body: some View {
         ZStack {
             VStack {
-                LinearGradient(gradient: theme.blueGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2).overlay {
+                LinearGradient(gradient: theme.greenGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2).overlay {
                     
                     VStack {
                         Group {
@@ -125,6 +125,7 @@ struct SelectPhotoView: View {
             
             image
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 150, height: 150)
                 .cornerRadius(25)
                 .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: -3)

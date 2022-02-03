@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001825BF27A5966500C9E3C6 /* ImagePicker.swift */; };
+		001B021727AAF0BB0078D827 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B021627AAF0BB0078D827 /* StorageModel.swift */; };
+		001E21FE27A8B4F800132310 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 001E21FD27A8B4F800132310 /* SDWebImageSwiftUI */; };
 		002F3C2927A718FA001C15DD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2827A718FA001C15DD /* Post.swift */; };
 		002F3C2D27A73B52001C15DD /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2C27A73B51001C15DD /* PostView.swift */; };
 		0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */; };
@@ -57,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		001825BF27A5966500C9E3C6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		001B021627AAF0BB0078D827 /* StorageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
 		002F3C2827A718FA001C15DD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		002F3C2C27A73B51001C15DD /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0061DCF22796D1EA00C05351 /* Dear Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dear Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001E21FE27A8B4F800132310 /* SDWebImageSwiftUI in Frameworks */,
 				0061DD362796F0AD00C05351 /* FirebaseStorageSwift-Beta in Frameworks */,
 				0061DD322796F0AD00C05351 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				0061DD342796F0AD00C05351 /* FirebaseStorage in Frameworks */,
@@ -182,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				0061DD392796F8D700C05351 /* DatabaseModel.swift */,
+				001B021627AAF0BB0078D827 /* StorageModel.swift */,
 				0061DD3F2798680200C05351 /* User.swift */,
 				0061DD4927998A5900C05351 /* ColorExtensions.swift */,
 				00996067279CD7BB001E39FA /* Themes.swift */,
@@ -236,6 +241,7 @@
 				0061DD332796F0AD00C05351 /* FirebaseStorage */,
 				0061DD352796F0AD00C05351 /* FirebaseStorageSwift-Beta */,
 				0099605E279C8EA0001E39FA /* GoogleSignIn */,
+				001E21FD27A8B4F800132310 /* SDWebImageSwiftUI */,
 			);
 			productName = "Dear Nature";
 			productReference = 0061DCF22796D1EA00C05351 /* Dear Nature.app */;
@@ -312,6 +318,7 @@
 			packageReferences = (
 				0061DD2C2796F0AC00C05351 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0099605D279C8EA0001E39FA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				001E21FC27A8B4F700132310 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 0061DCF32796D1EA00C05351 /* Products */;
 			projectDirPath = "";
@@ -365,6 +372,7 @@
 				00996068279CD7BB001E39FA /* Themes.swift in Sources */,
 				0061DD3A2796F8D700C05351 /* DatabaseModel.swift in Sources */,
 				0061DD44279896AE00C05351 /* TabView.swift in Sources */,
+				001B021727AAF0BB0078D827 /* StorageModel.swift in Sources */,
 				002F3C2D27A73B52001C15DD /* PostView.swift in Sources */,
 				00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */,
 				0061DD3C2796FB3F00C05351 /* LoginView.swift in Sources */,
@@ -698,6 +706,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		001E21FC27A8B4F700132310 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		0061DD2C2796F0AC00C05351 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -717,6 +733,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		001E21FD27A8B4F800132310 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 001E21FC27A8B4F700132310 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		0061DD2D2796F0AD00C05351 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0061DD2C2796F0AC00C05351 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

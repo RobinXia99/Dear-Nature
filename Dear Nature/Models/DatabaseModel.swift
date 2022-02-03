@@ -14,7 +14,7 @@ class DatabaseModel {
     
     private let db = Firestore.firestore()
     private var auth = Auth.auth()
-    private var storage = Storage.storage()
+    private let storage = StorageModel()
     
     
     func createUserEntry(user: User, completion: @escaping (Bool) -> Void) {
@@ -75,21 +75,43 @@ class DatabaseModel {
     
     func saveProfilePictureToFirebase(image: UIImage?) {
         guard let uid = auth.currentUser?.uid, image != nil else { return }
-        guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
-        let ref = storage.reference(withPath: uid)
-        ref.putData(imageData, metadata: nil) { metaData, error in
-            if let error = error {
-                print("Saving PFP failed: \(error)")
-                return
-            }
-            
+        storage.saveProfilePictureToStorage(image: image) { ref , error in
             ref.downloadURL { url, error in
                 guard let url = url else { return }
                 self.db.collection("users").document(uid).updateData(["profileImageUrl": url.absoluteString])
             }
         }
+            
+            
+        }
+    
+    func makePost(image: UIImage?, caption: String) {
+        guard let uid = auth.currentUser?.uid, image != nil else { return }
+        var newPost = Post()
+        storage.savePostImageToStorage(image: image) { ref , error in
+            ref.downloadURL { url, error in
+                guard let url = url else { return }
+                
+                newPost.uid = uid
+                newPost.caption = caption
+                newPost.likes = [String]()
+                newPost.postImage = url.absoluteString
+                
+                let newPostDictionary = ["uid" : newPost.uid,
+                                           "caption" : newPost.caption,
+                                           "likes" : newPost.likes,
+                                         "postImage" : newPost.postImage,
+                                         "date" : newPost.date] as [String : Any]
+                
+                self.db.collection("posts").document(uid).collection("userposts").addDocument(data: newPostDictionary)
+            }
+        }
+        
+        
+        
+    }
+    
     }
     
     
     
-}

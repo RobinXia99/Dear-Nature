@@ -18,8 +18,6 @@ struct TabView: View {
         
         ZStack {
             
-            
-            
             switch selectedTab {
                 
             case 0:
