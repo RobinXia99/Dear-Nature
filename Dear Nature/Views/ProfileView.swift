@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State var pickerSelection = "photos"
     @StateObject var userProfileViewModel = UserProfileViewModel()
     
+    
     var themes = Themes()
 
     
@@ -26,7 +27,6 @@ struct ProfileView: View {
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.38)
                         UserInfoView()
-                            .padding(.top,85)
 
                         Spacer()
                     }
@@ -73,7 +73,6 @@ struct UserInfoView: View {
     
     var body: some View {
         
-        GeometryReader { geometry in
             VStack {
                 HStack (spacing: 5) {
                     
@@ -89,7 +88,7 @@ struct UserInfoView: View {
                                     .shadow(radius: 1)
                             }.padding(.leading,25)
                         
-                        Text(authHandler.session?.fullName ?? "Name")
+                        Text(getFirstName())
                             .font(.title2)
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.leading)
@@ -146,16 +145,28 @@ struct UserInfoView: View {
                 
             }
             
-        }
+        
         
 
         
     }
+    
+    func getFirstName() -> String {
+        var firstName = ""
+        
+        if let fullName = authHandler.session?.fullName {
+            let fullNameArr = fullName.components(separatedBy: " ")
+            firstName = fullNameArr[0]
+        }
+        return firstName
+    }
+    
 }
 
 struct UserPostsGrid: View {
     
     @ObservedObject var userProfileViewModel : UserProfileViewModel
+    @State var showingPostView = false
     
     var columnGrid: [GridItem] = [GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1)]
     
@@ -168,11 +179,129 @@ struct UserPostsGrid: View {
                     .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
                     .clipped()
                     .onTapGesture {
+                        showingPostView = true
+                    }
+                    .fullScreenCover(isPresented: $showingPostView) {
+                        ZStack {
+                            Color.black.opacity(0.74).ignoresSafeArea()
+                            PhotoPostView(showingPostView: $showingPostView, userProfileViewModel: userProfileViewModel, post: post)
+                                .background(BackgroundClearView().ignoresSafeArea())
+                        }
                         
                     }
-                
             }
         }
+    }
+}
+
+struct PhotoPostView: View {
+    @Binding var showingPostView: Bool
+    @ObservedObject var userProfileViewModel : UserProfileViewModel
+    @EnvironmentObject var authHandler: AuthViewModel
+    var post: Post
+    var body: some View {
+        ScrollView(.vertical) {
+            VStack {
+                HStack {
+                    Button(action: {
+                        showingPostView = false
+                    }) {
+                        
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    Spacer()
+                }
+                ForEach(userProfileViewModel.userPosts) { post in
+                    HStack {
+                        Spacer()
+                        Text(post.date)
+                            .foregroundColor(.white)
+                            .padding(5)
+
+                    }
+                    
+                    WebImage(url: URL(string: post.postImage))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.width * 0.95)
+                        .cornerRadius(5)
+                        .overlay {
+                            
+                            VStack {
+                                HStack (spacing: 5) {
+                                    WebImage(url: URL(string: authHandler.session?.profileImageUrl ?? ""))
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 50, height: 50)
+                                        .cornerRadius(50)
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 50)
+                                                .stroke(.white, lineWidth: 2)
+                                                .shadow(radius: 1)
+                                        }
+                                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                                        .padding(.top)
+                                        .padding(.leading)
+                                    
+                                    Text("@\(authHandler.session?.username ?? "Username")")
+                                        .foregroundColor(.white)
+                                        .font(.title3)
+                                        .padding(.top)
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        
+                                    }) {
+                                        Image(systemName: "trash.circle.fill")
+                                            .resizable()
+                                            .symbolRenderingMode(.palette)
+                                            .foregroundStyle(.red, .white)
+                                            .frame(width: 44, height: 44)
+                                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                                            .padding()
+                                    }
+                                }
+                                
+                                
+                                HStack {
+                                    
+                                }
+                                Spacer()
+                            }
+                        }
+                    
+                    Text(post.caption)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(4)
+                        .frame(width: UIScreen.main.bounds.width * 0.95, alignment: .topLeading)
+                        .padding(3)
+                    
+                    Button(action: {
+                        
+                    }) {
+                        HStack (spacing: 2) {
+                            Image(systemName: "text.bubble")
+                                .foregroundColor(.green)
+                            Text("Comments")
+                                .font(.title3)
+                                .foregroundColor(.black)
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.05)
+                        .background(.white)
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.7), radius: 2, x: 0, y: 2)
+                        
+                        
+                    }
+                    
+                }
+            }
+        }
+        
     }
 }
 
