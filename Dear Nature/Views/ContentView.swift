@@ -18,7 +18,7 @@ struct ContentView: View {
                 if !authHandler.isSignedIn {
                     LoginView()
                 } else {
-                    TabView()
+                    TabsView()
                 }
             }
         }.onAppear(perform: getUser)
@@ -32,7 +32,19 @@ struct ContentView: View {
     
 }
 
+struct NavigationConfigurator: UIViewControllerRepresentable {
+    var configure: (UINavigationController) -> Void = { _ in }
 
+    func makeUIViewController(context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
+        UIViewController()
+    }
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
+        if let nc = uiViewController.navigationController {
+            self.configure(nc)
+        }
+    }
+
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -14,14 +14,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         appearance.configureWithTransparentBackground()
         //appearance.configureWithOpaqueBackground()
         //appearance.backgroundColor = UIColor(red: 60/256, green: 166/256, blue: 211/256, alpha: 1)
-        
+        /*
         let attrs: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white
         ]
-        
-        //appearance.largeTitleTextAttributes = attrs
+  
+        appearance.largeTitleTextAttributes = attrs
         appearance.titleTextAttributes = attrs
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        */
+        //UITableView.appearance().backgroundColor = UIColor.clear
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
         return true
     }
 }
