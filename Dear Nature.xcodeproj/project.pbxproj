@@ -11,6 +11,7 @@
 		001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001825BF27A5966500C9E3C6 /* ImagePicker.swift */; };
 		001B021727AAF0BB0078D827 /* StorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B021627AAF0BB0078D827 /* StorageModel.swift */; };
 		001E21FE27A8B4F800132310 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 001E21FD27A8B4F800132310 /* SDWebImageSwiftUI */; };
+		002EAC3B27B4620F003EB9F1 /* FollowageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002EAC3A27B4620F003EB9F1 /* FollowageModel.swift */; };
 		002F3C2927A718FA001C15DD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2827A718FA001C15DD /* Post.swift */; };
 		002F3C2D27A73B52001C15DD /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F3C2C27A73B51001C15DD /* PostView.swift */; };
 		0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0061DCF52796D1EA00C05351 /* Dear_NatureApp.swift */; };
@@ -71,6 +72,7 @@
 		000A02C727AC447900BBC0E4 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		001825BF27A5966500C9E3C6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		001B021627AAF0BB0078D827 /* StorageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageModel.swift; sourceTree = "<group>"; };
+		002EAC3A27B4620F003EB9F1 /* FollowageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowageModel.swift; sourceTree = "<group>"; };
 		002F3C2827A718FA001C15DD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		002F3C2C27A73B51001C15DD /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0061DCF22796D1EA00C05351 /* Dear Nature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dear Nature.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				0061DD392796F8D700C05351 /* DatabaseModel.swift */,
+				002EAC3A27B4620F003EB9F1 /* FollowageModel.swift */,
 				001B021627AAF0BB0078D827 /* StorageModel.swift */,
 				0061DD3F2798680200C05351 /* User.swift */,
 				0061DD4927998A5900C05351 /* ColorExtensions.swift */,
@@ -419,6 +422,7 @@
 			files = (
 				0061DCF82796D1EA00C05351 /* ContentView.swift in Sources */,
 				00944AEB27A042E700C3E0E0 /* GetStartedView.swift in Sources */,
+				002EAC3B27B4620F003EB9F1 /* FollowageModel.swift in Sources */,
 				0091F0B627A2085800D1E22C /* HomeView.swift in Sources */,
 				00996A8127B339560002C03A /* OtherProfileView.swift in Sources */,
 				0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */,

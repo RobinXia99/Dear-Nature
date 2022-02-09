@@ -15,6 +15,8 @@ class UserViewModel: ObservableObject {
     var db = DatabaseModel()
     @Published var userPosts = [Post]()
     @Published var otherUserPosts = [Post]()
+    @Published var following = 0
+    @Published var followers = 0
     
     func getUserPosts(user: User?) {
         guard user != nil else { return }
@@ -46,10 +48,20 @@ class UserViewModel: ObservableObject {
         }
      }
     
-    func getFollowers(userId: String) {
-        
-        
-        
+    func follow(userId: String) {
+        db.follow(userId: userId) { completion in
+            if completion {
+                print("followed")
+            }
+        }
+    }
+    
+    func unfollow(userId: String) {
+        db.unfollow(userId: userId) { completion in
+            if completion {
+                print("unfollowed")
+            }
+        }
     }
     
     

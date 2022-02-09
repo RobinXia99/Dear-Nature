@@ -12,7 +12,7 @@ struct OtherProfileView: View {
     
     @State var user: User
     @State var pickerSelection = "photos"
-    @StateObject var userPostViewModel = UserViewModel()
+    @StateObject var userViewModel = UserViewModel()
     @Environment(\.presentationMode) var presentationMode
     
     
@@ -39,7 +39,7 @@ struct OtherProfileView: View {
                     
                     
                     if pickerSelection == "photos" {
-                        UserPostsGrid(userPostViewModel: userPostViewModel, user: user)
+                        UserPostsGrid(userViewModel: userViewModel, user: user)
                     } else {
                         EmptyView()
                     }
@@ -47,7 +47,7 @@ struct OtherProfileView: View {
             }
             .ignoresSafeArea()
             .onAppear {
-                userPostViewModel.getUserPosts(user: user)
+                userViewModel.getUserPosts(user: user)
             }
 
             

@@ -45,7 +45,7 @@ struct ProfileHeader: View {
                     if user == authHandler.session {
                         EditProfileButton()
                     } else {
-                        FollowButton()
+                        FollowButton(userId: user.uid)
                     }
                     
                 }.padding()
@@ -103,9 +103,12 @@ struct ProfileHeader: View {
 }
 
 struct FollowButton: View {
+    
+    @ObservedObject var userViewModel = UserViewModel()
+    var userId : String
     var body: some View {
         Button(action: {
-            print()
+            userViewModel.follow(userId: userId)
         }, label: {
             Text("Follow")
                 .font(.body)

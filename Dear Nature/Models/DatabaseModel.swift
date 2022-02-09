@@ -32,7 +32,10 @@ class DatabaseModel {
                           "email": newUser.email,
                           "profileImageUrl": newUser.profileImageUrl]
         
+        let followageMap = ["followers": [String](), "following": [String]()]
+        
         db.collection("users").document(currentUser.uid).setData(newUserMap as [String : Any], merge: true)
+        db.collection("followage").document(currentUser.uid).setData(followageMap)
         
         completion(true)
         
@@ -165,6 +168,64 @@ class DatabaseModel {
             
             completion(listOfUsers)
         }
+    }
+    
+    func follow(userId: String, completion: @escaping (_ onSuccess: Bool) -> Void ) {
+        guard let user = auth.currentUser else { return }
+        
+        db.collection("followage").document(user.uid).updateData(["following": FieldValue.arrayUnion([userId])]) { err in
+            if let err = err {
+                print("error following: \(err)")
+            } else {
+                print("successfully followed")
+                
+                self.db.collection("followage").document(userId).updateData(["followers": FieldValue.arrayUnion([user.uid])]) { err in
+                    if let err = err {
+                        print("error updating other users followers: \(err)")
+                    } else {
+                        print("successfully updated other users followers")
+                        completion(true)
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
+
+    func unfollow(userId: String, completion: @escaping (_ onSuccess: Bool) -> Void ) {
+    guard let user = auth.currentUser else { return }
+    
+        db.collection("followage").document(user.uid).updateData(["following": FieldValue.arrayRemove([userId])]) { err in
+        if let err = err {
+            print("error unfollowing: \(err)")
+        } else {
+            print("successfully unfollowed")
+            
+            self.db.collection("followage").document(userId).updateData(["followers": FieldValue.arrayRemove([user.uid])]) { err in
+                if let err = err {
+                    print("error updating other users followers: \(err)")
+                } else {
+                    print("successfully updated other users followers")
+                    completion(true)
+                }
+            }
+        }
+    }
+        
+    
+}
+    
+    func checkFollowage(userId: String, completion: @escaping (_ onSuccess: [Bool]) -> Void) {
+        guard let user = auth.currentUser else { return }
+        
+        db.collection("followers").document(user.uid).getDocument { snapshot, err in
+            guard snapshot != nil else { return }
+            
+            
+        }
+        
     }
     
     
