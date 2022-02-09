@@ -9,15 +9,16 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-class UserProfileViewModel: ObservableObject {
+class UserViewModel: ObservableObject {
     
     var auth = Auth.auth()
     var db = DatabaseModel()
     @Published var userPosts = [Post]()
+    @Published var otherUserPosts = [Post]()
     
-    func getUserPosts() {
-        guard auth.currentUser != nil else { return }
-        db.fetchUserPosts() { snapshot in
+    func getUserPosts(user: User?) {
+        guard user != nil else { return }
+        db.getUserPosts(user: user) { snapshot in
             guard let snapshot = snapshot else {
                 return
             }
@@ -40,10 +41,17 @@ class UserProfileViewModel: ObservableObject {
                 }
             }
             
-            print(self.userPosts)
             
             
         }
      }
+    
+    func getFollowers(userId: String) {
+        
+        
+        
+    }
+    
+    
     
 }

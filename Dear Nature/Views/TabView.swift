@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct TabsView: View {
     
     @State var selectedTab = 0
     @EnvironmentObject var authHandler: AuthViewModel
@@ -23,7 +23,7 @@ struct TabView: View {
             case 0:
                 HomeView()
             case 1:
-                Text("Explore")
+                DiscoverView()
             case 3:
                 Text("Maps")
             case 4:
@@ -52,7 +52,7 @@ struct TabView: View {
 
 struct TabBar: View {
     
-    let tabBarImages = ["house","magnifyingglass","plus.app.fill","mappin","person.circle"]
+    let tabBarImages = ["house","safari","plus.app.fill","mappin","person.circle"]
     
     @Binding var selectedTab: Int
     
@@ -83,8 +83,8 @@ struct TabBar: View {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
+struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView()
+        TabsView()
     }
 }

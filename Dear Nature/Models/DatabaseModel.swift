@@ -65,7 +65,7 @@ class DatabaseModel {
                         completion(user,error)
                     }
                 case .failure(let error):
-                    print("error mapping the document \(error)")
+                    print("error getting user \(error)")
                 }
             }
         
@@ -87,15 +87,24 @@ class DatabaseModel {
     
     func makePost(image: UIImage?, caption: String) {
         guard let uid = auth.currentUser?.uid, image != nil else { return }
+        
         var newPost = Post()
+        let dateFormatter : DateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        
         storage.savePostImageToStorage(image: image) { ref , error in
             ref.downloadURL { url, error in
                 guard let url = url else { return }
+                
+                
                 
                 newPost.uid = uid
                 newPost.caption = caption
                 newPost.likes = [String]()
                 newPost.postImage = url.absoluteString
+                newPost.date = dateFormatter.string(from: date)
                 
                 let newPostDictionary = ["uid" : newPost.uid,
                                            "caption" : newPost.caption,
@@ -111,9 +120,9 @@ class DatabaseModel {
         
     }
     
-    func fetchUserPosts(completion: @escaping (_ document: QuerySnapshot?) -> Void) {
-        guard let currentUser = auth.currentUser else { return }
-        db.collection("posts").document(currentUser.uid).collection("userposts").getDocuments() { snapshot, error in
+    func getUserPosts(user: User?, completion: @escaping (_ document: QuerySnapshot?) -> Void) {
+        guard user != nil else { return }
+        db.collection("posts").document(user!.uid).collection("userposts").getDocuments() { snapshot, error in
             guard let snapshot = snapshot else {
                 if let error = error {
                     print("error fetching posts: \(error)")
@@ -123,6 +132,41 @@ class DatabaseModel {
             completion(snapshot)
         }
     }
+    
+    func getUserList(completion: @escaping (_ users: [User]) -> Void) {
+        var listOfUsers = [User]()
+        
+        db.collection("users").whereField("username", isNotEqualTo: "").getDocuments() { snap, err in
+            
+            guard let snap = snap else {
+                if let error = err {
+                    print("error searching for user: \(error)")
+                }
+                return
+            }
+            
+            listOfUsers.removeAll()
+            
+            for document in snap.documents {
+                let result = Result {
+                    try document.data(as: User.self)
+                }
+                switch result {
+                case .success(let user):
+                    if let user = user {
+                        listOfUsers.append(user)
+                    } else {
+                        print("user does not exist")
+                    }
+                case .failure(let error):
+                    print("error reading user: \(error)")
+                }
+            }
+            
+            completion(listOfUsers)
+        }
+    }
+    
     
     }
     
