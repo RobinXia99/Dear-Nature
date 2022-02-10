@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct UserPostsGrid: View {
     
-    @ObservedObject var userPostViewModel : UserViewModel
+    @ObservedObject var userViewModel : UserViewModel
     @EnvironmentObject var authHandler: AuthViewModel
     @State var showingPostView = false
     @State var scrollIndex = 0
@@ -22,7 +22,7 @@ struct UserPostsGrid: View {
     var body: some View {
         LazyVGrid(columns: columnGrid, spacing: 1) {
 
-            ForEach(Array(userPostViewModel.userPosts.enumerated()), id: \.element) { index, post in
+            ForEach(Array(userViewModel.userPosts.enumerated()), id: \.element) { index, post in
                 WebImage(url: URL(string: post.postImage))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -36,7 +36,7 @@ struct UserPostsGrid: View {
                     .fullScreenCover(isPresented: $showingPostView) {
                         ZStack {
                             Color.black.opacity(0.74).ignoresSafeArea()
-                            DetailedPostView(showingPostView: $showingPostView, userPostViewModel: userPostViewModel, scrollIndex: $scrollIndex, user: user )
+                            DetailedPostView(showingPostView: $showingPostView, userViewModel: userViewModel, scrollIndex: $scrollIndex, user: user )
                                 .background(BackgroundClearView().ignoresSafeArea())
                         }
                         

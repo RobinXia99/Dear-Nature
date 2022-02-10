@@ -14,6 +14,7 @@ struct ProfileHeader: View {
     
     var user: User
     @EnvironmentObject var authHandler: AuthViewModel
+    @ObservedObject var userViewModel: UserViewModel
     var buttonText = "Edit Profile"
     
     var body: some View {
@@ -45,7 +46,7 @@ struct ProfileHeader: View {
                     if user == authHandler.session {
                         EditProfileButton()
                     } else {
-                        FollowButton()
+                        FollowButton(userViewModel: userViewModel, userId: user.uid)
                     }
                     
                 }.padding()
@@ -57,7 +58,7 @@ struct ProfileHeader: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
-                        Text("8 888")
+                        Text(String(userViewModel.followers))
                             .foregroundColor(.black)
                     }.padding(.leading,20)
                     Spacer()
@@ -66,7 +67,7 @@ struct ProfileHeader: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
-                        Text("10")
+                        Text(String(userViewModel.following))
                             .foregroundColor(.black)
                     }
                     Spacer()
@@ -75,13 +76,15 @@ struct ProfileHeader: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
-                        Text("12M")
+                        Text("88M")
                             .foregroundColor(.black)
                     }
                     Spacer()
                     
                 }
                 
+            }.onAppear {
+                userViewModel.getFollowage(userId: user.uid)
             }
             
         
@@ -103,15 +106,23 @@ struct ProfileHeader: View {
 }
 
 struct FollowButton: View {
+    
+    @ObservedObject var userViewModel: UserViewModel
+    var userId : String
     var body: some View {
         Button(action: {
-            print()
+            if !userViewModel.isFollowing {
+                userViewModel.follow(userId: userId)
+            } else {
+                userViewModel.unfollow(userId: userId)
+            }
+            
         }, label: {
-            Text("Follow")
+            Text(userViewModel.isFollowing ? "Unfollow": "Follow")
                 .font(.body)
-                .foregroundColor(.white)
+                .foregroundColor(userViewModel.isFollowing ? .pink: .white)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.32, height: UIScreen.main.bounds.height * 0.038)
-                .background(.pink)
+                .background(userViewModel.isFollowing ? .white: .pink)
                 .cornerRadius(15)
                 .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
         }).padding()

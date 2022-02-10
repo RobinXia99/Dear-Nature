@@ -12,7 +12,7 @@ struct ProfileView: View {
     
     @EnvironmentObject var authHandler: AuthViewModel
     @State var pickerSelection = "photos"
-    @StateObject var userPostViewModel = UserViewModel()
+    @StateObject var userViewModel = UserViewModel()
     
     
     var themes = Themes()
@@ -26,7 +26,7 @@ struct ProfileView: View {
                         Image("whiteborder")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.38)
-                        ProfileHeader(user: authHandler.session!)
+                        ProfileHeader(user: authHandler.session!, userViewModel: userViewModel)
 
                         Spacer()
                     }
@@ -39,7 +39,7 @@ struct ProfileView: View {
                     
                     
                     if pickerSelection == "photos" {
-                        UserPostsGrid(userPostViewModel: userPostViewModel, user: authHandler.session!)
+                        UserPostsGrid(userViewModel: userViewModel, user: authHandler.session!)
                     } else {
                         EmptyView()
                     }
@@ -47,7 +47,7 @@ struct ProfileView: View {
             }
             .ignoresSafeArea()
             .onAppear {
-                userPostViewModel.getUserPosts(user: authHandler.session)
+                userViewModel.getUserPosts(user: authHandler.session)
             }
 
             

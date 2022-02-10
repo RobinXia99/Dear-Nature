@@ -12,12 +12,11 @@ struct OtherProfileView: View {
     
     @State var user: User
     @State var pickerSelection = "photos"
-    @StateObject var userPostViewModel = UserViewModel()
+    @ObservedObject var userViewModel: UserViewModel
     @Environment(\.presentationMode) var presentationMode
     
     
     var themes = Themes()
-
     
     var body: some View {
             ScrollView (.vertical) {
@@ -26,7 +25,7 @@ struct OtherProfileView: View {
                         Image("whiteborder")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.38)
-                        ProfileHeader(user: user)
+                        ProfileHeader(user: user, userViewModel: userViewModel)
 
                         Spacer()
                     }
@@ -39,7 +38,7 @@ struct OtherProfileView: View {
                     
                     
                     if pickerSelection == "photos" {
-                        UserPostsGrid(userPostViewModel: userPostViewModel, user: user)
+                        UserPostsGrid(userViewModel: userViewModel, user: user)
                     } else {
                         EmptyView()
                     }
@@ -47,7 +46,7 @@ struct OtherProfileView: View {
             }
             .ignoresSafeArea()
             .onAppear {
-                userPostViewModel.getUserPosts(user: user)
+                userViewModel.getUserPosts(user: user)
             }
 
             

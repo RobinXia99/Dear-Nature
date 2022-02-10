@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct DetailedPostView: View {
     @Binding var showingPostView: Bool
-    @ObservedObject var userPostViewModel : UserViewModel
+    @ObservedObject var userViewModel : UserViewModel
     @Binding var scrollIndex: Int
     var user: User
     var body: some View {
@@ -31,7 +31,7 @@ struct DetailedPostView: View {
                         }
                         Spacer()
                     }
-                    ForEach(Array(userPostViewModel.userPosts.enumerated()), id: \.element) { index, post in
+                    ForEach(Array(userViewModel.userPosts.enumerated()), id: \.element) { index, post in
                         HStack {
                             
                             WebImage(url: URL(string: user.profileImageUrl ?? ""))
