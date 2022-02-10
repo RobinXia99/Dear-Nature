@@ -11,8 +11,6 @@ struct DiscoverView: View {
     @State var searchText = ""
     @State var isSearching = false
     @State var listOfUsers = [User]()
-    var db = DatabaseModel()
-    var theme = Themes()
     
 
     var body: some View {
@@ -21,7 +19,7 @@ struct DiscoverView: View {
 
                 
                 VStack {
-                    SearchBar(searchText: $searchText, isSearching: $isSearching)
+                    SearchBar(searchText: $searchText, isSearching: $isSearching, listOfUsers: $listOfUsers)
 
                     ScrollView {
                         EventSlideShow()
@@ -34,11 +32,6 @@ struct DiscoverView: View {
                         .padding(.top,80)
                 }
                 
-            }
-            .onAppear {
-                db.getUserList { userList in
-                    listOfUsers = userList
-                }
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
@@ -56,6 +49,8 @@ struct SearchBar: View {
     
     @Binding var searchText: String
     @Binding var isSearching: Bool
+    @Binding var listOfUsers: [User]
+    var db = DatabaseModel()
     var body: some View {
         HStack {
             HStack{
@@ -67,6 +62,13 @@ struct SearchBar: View {
                 .cornerRadius(6)
                 .padding(.horizontal)
                 .onTapGesture {
+                    if listOfUsers.isEmpty {
+                        db.getUserList { userList in
+                            listOfUsers = userList
+                        }
+                        print("updating userlist")
+                    }
+                    
                     isSearching = true
                 }
                 .overlay {

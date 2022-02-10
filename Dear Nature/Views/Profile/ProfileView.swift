@@ -26,7 +26,7 @@ struct ProfileView: View {
                         Image("whiteborder")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.38)
-                        ProfileHeader(user: authHandler.session!)
+                        ProfileHeader(user: authHandler.session!, userViewModel: userViewModel)
 
                         Spacer()
                     }

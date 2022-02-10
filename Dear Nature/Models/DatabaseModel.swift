@@ -217,11 +217,23 @@ class DatabaseModel {
     
 }
     
-    func checkFollowage(userId: String, completion: @escaping (_ onSuccess: [Bool]) -> Void) {
-        guard let user = auth.currentUser else { return }
-        
-        db.collection("followers").document(user.uid).getDocument { snapshot, err in
-            guard snapshot != nil else { return }
+    func checkFollowage(userId: String, completion: @escaping (_ followage: Followage) -> Void) {
+         
+        db.collection("followage").document(userId).getDocument { document, err in
+            if let document = document, document.exists {
+                
+                guard let retrievedData = document.data() else { return }
+
+                if let followage = Followage(data: retrievedData) {
+                    completion(followage)
+                }
+                
+                
+                
+            }
+
+            
+            
             
             
         }

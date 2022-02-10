@@ -14,9 +14,9 @@ class UserViewModel: ObservableObject {
     var auth = Auth.auth()
     var db = DatabaseModel()
     @Published var userPosts = [Post]()
-    @Published var otherUserPosts = [Post]()
     @Published var following = 0
     @Published var followers = 0
+    @Published var isFollowing = false
     
     func getUserPosts(user: User?) {
         guard user != nil else { return }
@@ -50,20 +50,42 @@ class UserViewModel: ObservableObject {
     
     func follow(userId: String) {
         db.follow(userId: userId) { completion in
-            if completion {
+            if completion && self.isFollowing == false {
                 print("followed")
+                self.isFollowing = true
+                self.followers += 1
+                
             }
         }
     }
     
     func unfollow(userId: String) {
         db.unfollow(userId: userId) { completion in
-            if completion {
+            if completion && self.isFollowing == true {
                 print("unfollowed")
+                self.isFollowing = false
+                self.followers -= 1
             }
         }
     }
     
-    
+    func getFollowage(userId: String) {
+        
+        db.checkFollowage(userId: userId) { followage in
+            self.followers = followage.followers.count
+            self.following = followage.following.count
+            self.isFollowing = false
+            
+            for i in followage.followers {
+                if self.auth.currentUser?.uid == i {
+                    self.isFollowing = true
+                    print("isFollowing: \(self.isFollowing)")
+                } else {
+                    self.isFollowing = false
+                    print("isFollowing: \(self.isFollowing)")
+                }
+            }
+        }
+    }
     
 }
