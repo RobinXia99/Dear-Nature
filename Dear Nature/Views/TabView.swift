@@ -25,7 +25,7 @@ struct TabsView: View {
             case 1:
                 DiscoverView()
             case 3:
-                Text("Maps")
+                MapView()
             case 4:
                 ProfileView()
             default:

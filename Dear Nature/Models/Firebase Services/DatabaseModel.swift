@@ -157,7 +157,9 @@ class DatabaseModel {
                 switch result {
                 case .success(let user):
                     if let user = user {
-                        listOfUsers.append(user)
+                        if user.uid != self.auth.currentUser?.uid {
+                            listOfUsers.append(user)
+                        }
                     } else {
                         print("user does not exist")
                     }

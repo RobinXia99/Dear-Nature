@@ -20,4 +20,20 @@ class Themes {
     
     let blueTheme = Color("#3CA6D3")
     
+    let international = Color("#2E2E2E")
+    
+    let asia = Color("")
+    
+    let europe = Color("")
+    
+    let northAmerica = Color("")
+    
+    let southAmerica = Color("")
+    
+    let australia = Color("")
+    
+    let africa = Color("")
+    
+    let antarctica = Color("")
+    
 }

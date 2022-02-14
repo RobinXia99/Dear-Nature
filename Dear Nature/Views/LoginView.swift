@@ -43,6 +43,7 @@ struct LoginView: View {
                 }
                 
                 CustomDivider()
+                    .padding()
                 
                 LoginStack()
                 
@@ -62,6 +63,7 @@ struct LoginView: View {
                     })
                     
                     CustomDivider()
+                        .padding()
                     
                     
                     Button(action: {
@@ -167,9 +169,9 @@ struct CustomDivider: View {
         Rectangle()
             .fill(color)
             .frame(width: UIScreen.main.bounds.width * 0.9,height: thickness)
-            .cornerRadius(1)
+            .cornerRadius(2)
             .edgesIgnoringSafeArea(.horizontal)
-            .padding()
+            .padding(.horizontal)
     }
 }
 
