@@ -55,6 +55,8 @@
 		00AF328427B6AE3F001F9801 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328327B6AE3F001F9801 /* MapView.swift */; };
 		00AF328627B6B7C0001F9801 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328527B6B7C0001F9801 /* MapViewModel.swift */; };
 		00AF328927B6B948001F9801 /* PlaceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328827B6B948001F9801 /* PlaceSettingsView.swift */; };
+		00B86E0727BAF9AE00B5179D /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */; };
+		00B86E0927BC89DA00B5179D /* PlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */; };
 		00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */; };
 		00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0AECE279B09E8004CD820 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,8 @@
 		00AF328327B6AE3F001F9801 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		00AF328527B6B7C0001F9801 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		00AF328827B6B948001F9801 /* PlaceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSettingsView.swift; sourceTree = "<group>"; };
+		00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
+		00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
 		00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F0AECE279B09E8004CD820 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +305,8 @@
 				00AF328327B6AE3F001F9801 /* MapView.swift */,
 				00AF328827B6B948001F9801 /* PlaceSettingsView.swift */,
 				009D977527B8647100338882 /* MapSelectView.swift */,
+				00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */,
+				00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				0083116D27AF1915006AF667 /* DiscoverView.swift in Sources */,
 				00996066279CD28E001E39FA /* ProfileView.swift in Sources */,
 				0061DD402798680200C05351 /* User.swift in Sources */,
+				00B86E0727BAF9AE00B5179D /* MapSettingsView.swift in Sources */,
 				0082464A27B1D23700D0B686 /* SearchList.swift in Sources */,
 				00AF327B27B55467001F9801 /* Place.swift in Sources */,
 				00996068279CD7BB001E39FA /* Themes.swift in Sources */,
@@ -490,6 +497,7 @@
 				0082464E27B1D5F100D0B686 /* EventViewModel.swift in Sources */,
 				00AF328427B6AE3F001F9801 /* MapView.swift in Sources */,
 				0061DD3C2796FB3F00C05351 /* LoginView.swift in Sources */,
+				00B86E0927BC89DA00B5179D /* PlaceInfoView.swift in Sources */,
 				000A02C827AC447900BBC0E4 /* UserViewModel.swift in Sources */,
 				002F3C2927A718FA001C15DD /* Post.swift in Sources */,
 				00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */,

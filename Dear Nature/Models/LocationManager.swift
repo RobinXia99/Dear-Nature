@@ -22,8 +22,14 @@ class LocationManager : NSObject, CLLocationManagerDelegate{
     
     func askPermission () {
         manager.requestWhenInUseAuthorization()
+    }
+    
+    func startUpdatingLocation() {
         manager.startUpdatingLocation()
-        
+    }
+    
+    func stopUpdatingLocation() {
+        manager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

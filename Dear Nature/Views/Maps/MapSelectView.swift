@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MapSelectView: View {
     @ObservedObject var mapViewModel: MapViewModel
@@ -42,7 +43,10 @@ struct MapSelectView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        mapService.createMap()
+                        if mapViewModel.myMaps.count < 10 {
+                            mapService.createMap()
+                        }
+                        
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .symbolRenderingMode(.palette)
@@ -69,7 +73,7 @@ struct MapList: View {
     var body: some View {
         ScrollView {
             ForEach(Array(mapViewModel.myMaps)) { map in
-                    theme.international
+                getCardColor(region: map.region)
                         .frame(height: UIScreen.main.bounds.height * 0.14)
                         .cornerRadius(15)
                         .overlay {
@@ -78,7 +82,7 @@ struct MapList: View {
                                     .stroke(Color.white, lineWidth: 2)
                                 
                                     HStack (alignment: .center) {
-                                        Image("shennongjia")
+                                        WebImage(url: URL(string: map.mapImage))
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: UIScreen.main.bounds.width * 0.26, height: UIScreen.main.bounds.width * 0.26)
@@ -88,21 +92,25 @@ struct MapList: View {
                                                     .stroke(.white, lineWidth: 2)
                                                     .shadow(radius: 1)
                                             }.padding(8)
+                                            .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                         
                                         VStack (spacing: 10){
                                             HStack  {
                                                 Text(map.mapName)
                                                     .foregroundColor(.white)
-                                                    .font(.body)
+                                                    .font(.title3)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                                 Spacer()
                                             }
                                             HStack  {
                                                 Image(systemName: "pin.fill")
                                                     .foregroundColor(.white)
                                                     .font(.body)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                                 Text("\(map.places.count)")
                                                     .foregroundColor(.white)
                                                     .font(.body)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                                 Spacer()
                                             }
                                             
@@ -110,9 +118,11 @@ struct MapList: View {
                                                 Image(systemName: "globe.asia.australia.fill")
                                                     .foregroundColor(.white)
                                                     .font(.body)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                                 Text(map.region)
                                                     .foregroundColor(.white)
                                                     .font(.body)
+                                                    .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                                 Spacer()
                                             }
                                             
@@ -122,6 +132,7 @@ struct MapList: View {
                                         Image(systemName: map.isPublic ? "lock.open.fill" : "lock.fill")
                                             .foregroundColor(.white)
                                             .font(.largeTitle)
+                                            .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                             .padding()
                                     }
                                 
@@ -139,6 +150,29 @@ struct MapList: View {
         }
         .frame(height: UIScreen.main.bounds.height * 0.6)
         
+    }
+    
+    func getCardColor(region: String) -> Color {
+        switch region {
+        case "International":
+            return theme.international!
+        case "Asia":
+            return theme.asia!
+        case "Europe":
+            return theme.europe!
+        case "Africa":
+            return theme.africa!
+        case "South America":
+            return theme.southAmerica!
+        case "North America":
+            return theme.northAmerica!
+        case "Antarctica":
+            return theme.antarctica!
+        case "Australia":
+            return theme.australia!
+        default:
+            return theme.international!
+        }
     }
 
 }

@@ -27,7 +27,7 @@ class StorageModel {
         }
     }
     
-    func savePostImageToStorage(image: UIImage?, completion: @escaping (_ ref: StorageReference, _ error: Error?) -> Void) {
+    func saveImageToStorage(image: UIImage?, completion: @escaping (_ ref: StorageReference, _ error: Error?) -> Void) {
         guard let uid = auth.currentUser?.uid, image != nil else { return }
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
         let fileName = UUID().uuidString
@@ -44,4 +44,21 @@ class StorageModel {
     }
     
 }
+    
+    func deleteStorageFile(url: String) {
+        
+        let storageRef = storage.reference(forURL: url)
+        
+        storageRef.delete { err in
+            if let err = err {
+                print("could not delete image")
+            } else {
+                print("image successfully deleted")
+            }
+        }
+        
+    }
+    
+    
+    
 }

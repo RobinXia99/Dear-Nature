@@ -1,28 +1,31 @@
 //
-//  PlaceSettingsView.swift
+//  MapSettingsView.swift
 //  Dear Nature
 //
-//  Created by Robin Xia on 2022-02-11.
+//  Created by Robin Xia on 2022-02-14.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
-import CoreLocation
 
-struct PlaceSettingsView: View {
+struct MapSettingsView: View {
     @ObservedObject var mapViewModel: MapViewModel
-    @Binding var showingPlaceSettings: Bool
-    @State var placeNameText = ""
+    @Binding var showingMapSettings: Bool
+    @State var mapNameText = ""
+    @State var toggleSwitch = false
+    @State var selectedRegion = "International"
+    @State var inputImage: UIImage?
     
+    
+    var regions = ["International", "Asia", "Europe", "North America", "South America", "Australia", "Africa", "Antarctica"]
     var theme = Themes()
     
     var width = UIScreen.main.bounds.width * 0.95
-    
     var body: some View {
         VStack (spacing: 5){
             
             Color.white
-                .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.7)
+                .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.55)
                 .cornerRadius(15)
                 .shadow(color: .black.opacity(0.2), radius: 2, x: 1, y: 1)
                 .overlay {
@@ -31,7 +34,7 @@ struct PlaceSettingsView: View {
                         HStack (alignment: .center) {
                             
                             Button(action: {
-                                showingPlaceSettings = false
+                                showingMapSettings = false
                             }) {
                                 Image(systemName: "xmark.circle.fill")
                                     .font(.system(size: 50))
@@ -42,7 +45,7 @@ struct PlaceSettingsView: View {
                                 
                             }.padding(.leading)
                             
-                            TextField("Place Name", text: $placeNameText)
+                            TextField("Map Name", text: $mapNameText)
                                 .multilineTextAlignment(.center)
                                 .font(.title3)
                                 .frame(width: UIScreen.main.bounds.width * 0.5)
@@ -53,19 +56,24 @@ struct PlaceSettingsView: View {
                                 .shadow(color: .black.opacity(0.2), radius: 2, x: -1, y: -1)
                                 .padding()
                             Spacer()
-                            
-                            
-                            
                         }
                         
+                        
+                        MapItems(mapViewModel: mapViewModel, mapNameText: $mapNameText, toggleSwitch: $toggleSwitch, selectedRegion: $selectedRegion, inputImage: $inputImage)
+                        
+                        
+                        
                     }
-
+                    
                     
                 }
             
+            
+            
             Button(action: {
-
-                
+                mapViewModel.updateCurrentMap(newMapName: mapNameText, newRegion: selectedRegion, isPublic: toggleSwitch, mapImage: inputImage) { _ in
+                    showingMapSettings = false
+                }
             }) {
                 Text("Save Changes")
                     .foregroundColor(.blue)
@@ -78,9 +86,13 @@ struct PlaceSettingsView: View {
             }
             
             Button(action: {
-
+                mapViewModel.deleteMap { success in
+                    if success {
+                        showingMapSettings = false
+                    }
+                }
             }) {
-                Text("Delete Place")
+                Text("Delete Map")
                     .foregroundColor(.red)
                     .frame(width: width, height: UIScreen.main.bounds.height * 0.05)
                     .background(.white)
@@ -88,13 +100,27 @@ struct PlaceSettingsView: View {
                     .shadow(color: Color.black.opacity(0.3), radius: 2, x: 1, y: 2)
                 
             }.padding(.bottom,50)
-               
             
+            
+            
+            
+            
+            
+            
+        }.onAppear {
+            guard mapViewModel.currentMap != nil else { return }
+            mapNameText = mapViewModel.currentMap?.mapName ?? ""
+            selectedRegion = mapViewModel.currentMap?.region ?? "International"
+            if mapViewModel.currentMap!.isPublic {
+                toggleSwitch = true
+            } else {
+                toggleSwitch = false
+            }
         }
     }
 }
 
-struct PlaceItems: View {
+struct MapItems: View {
     @ObservedObject var mapViewModel: MapViewModel
     @Binding var mapNameText: String
     @Binding var toggleSwitch: Bool
@@ -151,13 +177,60 @@ struct PlaceItems: View {
             }.padding()
             Spacer()
         }.padding()
-
-        HStack {
+        
+        HStack (spacing: 5) {
+            Image(systemName: "globe.asia.australia.fill")
+                .foregroundColor(.black)
+                .font(.largeTitle)
+                .padding(.leading)
+            
+            Text("Region")
+                .font(.title3)
+            
+            Spacer()
+            
+            Picker("", selection: $selectedRegion) {
+                ForEach(regions, id: \.self) {
+                    Text($0)
+                }
+            }.foregroundColor(theme.pinkTheme)
+                .pickerStyle(.menu)
+                .padding()
+        }
+        
+        HStack (spacing: 5) {
+            Image(systemName: "pin.fill")
+                .foregroundColor(.black)
+                .font(.largeTitle)
+                .padding(.leading)
+            
+            Text("Places")
+                .font(.title3)
+            
+            Spacer()
+            
+            Text(String(mapViewModel.currentMap?.places.count ?? 0))
+                .font(.title3)
+                .padding()
             
         }
+        
+        HStack (spacing: 5) {
+            Image(systemName: "eye.fill")
+                .foregroundColor(.black)
+                .font(.largeTitle)
+                .padding(.leading)
+            
+            Text(toggleSwitch ? "Public" : "Private")
+                .font(.title3)
+            
+            Spacer()
+            
+            Toggle("", isOn: $toggleSwitch)
+                .padding()
             
             
-            .sheet(isPresented: $showingImagePicker) {
+        }.sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $inputImage)
         }
     }
@@ -168,3 +241,4 @@ struct PlaceItems: View {
 
     }
 }
+

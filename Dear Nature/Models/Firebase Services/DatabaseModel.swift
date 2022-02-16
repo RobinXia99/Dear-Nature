@@ -97,7 +97,7 @@ class DatabaseModel {
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
         
-        storage.savePostImageToStorage(image: image) { ref , error in
+        storage.saveImageToStorage(image: image) { ref , error in
             ref.downloadURL { url, error in
                 guard let url = url else { return }
                 

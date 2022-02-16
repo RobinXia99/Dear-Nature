@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
+import UIKit
+import CoreLocation
 
 class MapViewModel: ObservableObject {
     
@@ -16,7 +19,46 @@ class MapViewModel: ObservableObject {
     func getUserMaps() {
         mapService.loadMaps { mapList in
             self.myMaps = mapList
-            self.myMaps.append(UserMap(id: "", uid: "", places: [Place(name: "Cool Place", markerSymbol: "fork.knife.circle.fill", placeInfo: "I like this place", latitude: 37.33233141, longitude: -122.0312186)], mapImage: "", mapName: "Favorite Beaches", isPublic: true, region: "International"))
+            
         }
     }
+    
+    func addTestPin() {
+        self.myMaps[0].places.append(Place(name: "Nice Place", markerSymbol: "mappin", placeInfo: "This is a cool place", latitude: 37.33233141, longitude: -122.0312186))
+    }
+    
+    func updateCurrentMap(newMapName: String, newRegion: String, isPublic: Bool, mapImage: UIImage?, completion: @escaping (_ success: Bool) -> Void) {
+        
+        guard self.currentMap != nil else { return }
+        
+        self.currentMap?.mapName = newMapName
+        self.currentMap?.region = newRegion
+        self.currentMap?.isPublic = isPublic
+        
+        
+        
+        mapService.saveChangesToMap(map: self.currentMap!, image: mapImage) { mapUrl in
+            if mapUrl != "" {
+                self.currentMap?.mapImage = mapUrl
+            }
+            completion(true)
+        }
+        
+    }
+    
+    func deleteMap(completion: @escaping (_ success: Bool) -> Void) {
+        guard self.currentMap != nil else { return }
+        mapService.deleteMap(map: self.currentMap!) { success in
+            self.currentMap = nil
+            completion(true)
+        }
+    }
+    
+    func placeMarker(location: CLLocationCoordinate2D?) {
+        guard let currentMap = currentMap else { return }
+
+        
+        
+    }
+    
 }
