@@ -35,11 +35,13 @@ struct SignUpView: View {
                     .foregroundColor(.white)
                 
                 CustomDivider()
+                    .padding()
                 
                 SignUpForms(isShowingSheet: $isShowingSheet)
                 
                 
                 CustomDivider()
+                    .padding()
                 
                 Button(action: {
                     authHandler.googleSignIn()

@@ -47,6 +47,16 @@
 		00996066279CD28E001E39FA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00996065279CD28E001E39FA /* ProfileView.swift */; };
 		00996068279CD7BB001E39FA /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00996067279CD7BB001E39FA /* Themes.swift */; };
 		00996A8127B339560002C03A /* OtherProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00996A8027B339560002C03A /* OtherProfileView.swift */; };
+		009D977627B8647100338882 /* MapSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D977527B8647100338882 /* MapSelectView.swift */; };
+		009D977827B895AA00338882 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D977727B895AA00338882 /* MapService.swift */; };
+		00AF327B27B55467001F9801 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF327A27B55467001F9801 /* Place.swift */; };
+		00AF327D27B5555F001F9801 /* UserMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF327C27B5555F001F9801 /* UserMap.swift */; };
+		00AF327F27B69C30001F9801 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF327E27B69C30001F9801 /* LocationManager.swift */; };
+		00AF328427B6AE3F001F9801 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328327B6AE3F001F9801 /* MapView.swift */; };
+		00AF328627B6B7C0001F9801 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328527B6B7C0001F9801 /* MapViewModel.swift */; };
+		00AF328927B6B948001F9801 /* PlaceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF328827B6B948001F9801 /* PlaceSettingsView.swift */; };
+		00B86E0727BAF9AE00B5179D /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */; };
+		00B86E0927BC89DA00B5179D /* PlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */; };
 		00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */; };
 		00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0AECE279B09E8004CD820 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
@@ -106,6 +116,16 @@
 		00996065279CD28E001E39FA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		00996067279CD7BB001E39FA /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		00996A8027B339560002C03A /* OtherProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileView.swift; sourceTree = "<group>"; };
+		009D977527B8647100338882 /* MapSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectView.swift; sourceTree = "<group>"; };
+		009D977727B895AA00338882 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
+		00AF327A27B55467001F9801 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		00AF327C27B5555F001F9801 /* UserMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMap.swift; sourceTree = "<group>"; };
+		00AF327E27B69C30001F9801 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		00AF328327B6AE3F001F9801 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		00AF328527B6B7C0001F9801 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		00AF328827B6B948001F9801 /* PlaceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSettingsView.swift; sourceTree = "<group>"; };
+		00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
+		00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
 		00C3DC7027A49BBA004BFA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00F0AECE279B09E8004CD820 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,14 +226,16 @@
 		0061DD1F2796D53500C05351 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0061DD392796F8D700C05351 /* DatabaseModel.swift */,
-				001B021627AAF0BB0078D827 /* StorageModel.swift */,
+				00AF328727B6B85D001F9801 /* Firebase Services */,
 				0061DD3F2798680200C05351 /* User.swift */,
 				0061DD4927998A5900C05351 /* ColorExtensions.swift */,
 				00996067279CD7BB001E39FA /* Themes.swift */,
 				002F3C2827A718FA001C15DD /* Post.swift */,
 				0082464F27B1D61400D0B686 /* Event.swift */,
 				002EAC3E27B49A9F003EB9F1 /* Followage.swift */,
+				00AF327A27B55467001F9801 /* Place.swift */,
+				00AF327C27B5555F001F9801 /* UserMap.swift */,
+				00AF327E27B69C30001F9801 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +243,7 @@
 		0061DD202796D53C00C05351 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00AF328027B69D2B001F9801 /* Maps */,
 				0083116B27AF18F4006AF667 /* Home */,
 				0083116A27AF18E8006AF667 /* Discover */,
 				0083116327AEF326006AF667 /* Profile */,
@@ -240,6 +263,7 @@
 				0061DD3D2797B1D700C05351 /* AuthViewModel.swift */,
 				000A02C727AC447900BBC0E4 /* UserViewModel.swift */,
 				0082464D27B1D5F100D0B686 /* EventViewModel.swift */,
+				00AF328527B6B7C0001F9801 /* MapViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -273,6 +297,28 @@
 				00944AEA27A042E700C3E0E0 /* GetStartedView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		00AF328027B69D2B001F9801 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				00AF328327B6AE3F001F9801 /* MapView.swift */,
+				00AF328827B6B948001F9801 /* PlaceSettingsView.swift */,
+				009D977527B8647100338882 /* MapSelectView.swift */,
+				00B86E0627BAF9AE00B5179D /* MapSettingsView.swift */,
+				00B86E0827BC89DA00B5179D /* PlaceInfoView.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		00AF328727B6B85D001F9801 /* Firebase Services */ = {
+			isa = PBXGroup;
+			children = (
+				001B021627AAF0BB0078D827 /* StorageModel.swift */,
+				0061DD392796F8D700C05351 /* DatabaseModel.swift */,
+				009D977727B895AA00338882 /* MapService.swift */,
+			);
+			path = "Firebase Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,16 +468,22 @@
 			files = (
 				0061DCF82796D1EA00C05351 /* ContentView.swift in Sources */,
 				00944AEB27A042E700C3E0E0 /* GetStartedView.swift in Sources */,
+				009D977827B895AA00338882 /* MapService.swift in Sources */,
 				0091F0B627A2085800D1E22C /* HomeView.swift in Sources */,
 				00996A8127B339560002C03A /* OtherProfileView.swift in Sources */,
+				00AF327F27B69C30001F9801 /* LocationManager.swift in Sources */,
 				0061DCF62796D1EA00C05351 /* Dear_NatureApp.swift in Sources */,
 				0083116D27AF1915006AF667 /* DiscoverView.swift in Sources */,
 				00996066279CD28E001E39FA /* ProfileView.swift in Sources */,
 				0061DD402798680200C05351 /* User.swift in Sources */,
+				00B86E0727BAF9AE00B5179D /* MapSettingsView.swift in Sources */,
 				0082464A27B1D23700D0B686 /* SearchList.swift in Sources */,
+				00AF327B27B55467001F9801 /* Place.swift in Sources */,
 				00996068279CD7BB001E39FA /* Themes.swift in Sources */,
 				0061DD3A2796F8D700C05351 /* DatabaseModel.swift in Sources */,
+				00AF328627B6B7C0001F9801 /* MapViewModel.swift in Sources */,
 				0083116527AEF34A006AF667 /* ProfileHeader.swift in Sources */,
+				00AF328927B6B948001F9801 /* PlaceSettingsView.swift in Sources */,
 				0082465027B1D61400D0B686 /* Event.swift in Sources */,
 				002EAC3F27B49A9F003EB9F1 /* Followage.swift in Sources */,
 				0061DD44279896AE00C05351 /* TabView.swift in Sources */,
@@ -441,12 +493,16 @@
 				002F3C2D27A73B52001C15DD /* PostView.swift in Sources */,
 				00C3DC7127A49BBB004BFA89 /* AppDelegate.swift in Sources */,
 				0083116927AEF5EA006AF667 /* DetailedPostView.swift in Sources */,
+				00AF327D27B5555F001F9801 /* UserMap.swift in Sources */,
 				0082464E27B1D5F100D0B686 /* EventViewModel.swift in Sources */,
+				00AF328427B6AE3F001F9801 /* MapView.swift in Sources */,
 				0061DD3C2796FB3F00C05351 /* LoginView.swift in Sources */,
+				00B86E0927BC89DA00B5179D /* PlaceInfoView.swift in Sources */,
 				000A02C827AC447900BBC0E4 /* UserViewModel.swift in Sources */,
 				002F3C2927A718FA001C15DD /* Post.swift in Sources */,
 				00F0AECF279B09E9004CD820 /* SignUpView.swift in Sources */,
 				001825C027A5966500C9E3C6 /* ImagePicker.swift in Sources */,
+				009D977627B8647100338882 /* MapSelectView.swift in Sources */,
 				0061DD3E2797B1D800C05351 /* AuthViewModel.swift in Sources */,
 				0061DD4A27998A5900C05351 /* ColorExtensions.swift in Sources */,
 			);
@@ -613,6 +669,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dear-Nature-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow app to use your location?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -642,6 +699,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dear-Nature-Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow app to use your location?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

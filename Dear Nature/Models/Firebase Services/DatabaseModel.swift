@@ -97,7 +97,7 @@ class DatabaseModel {
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
         
-        storage.savePostImageToStorage(image: image) { ref , error in
+        storage.saveImageToStorage(image: image) { ref , error in
             ref.downloadURL { url, error in
                 guard let url = url else { return }
                 
@@ -157,7 +157,9 @@ class DatabaseModel {
                 switch result {
                 case .success(let user):
                     if let user = user {
-                        listOfUsers.append(user)
+                        if user.uid != self.auth.currentUser?.uid {
+                            listOfUsers.append(user)
+                        }
                     } else {
                         print("user does not exist")
                     }

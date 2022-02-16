@@ -20,4 +20,24 @@ class Themes {
     
     let blueTheme = Color("#3CA6D3")
     
+    let pinkTheme = Color("#F74489")
+    
+    let textFieldGrey = Color("#F5F5F5")
+    
+    let international = Color("#2E2E2E")
+    
+    let asia = Color("#E23E3E")
+    
+    let europe = Color("457CE5")
+    
+    let northAmerica = Color("#C1C135")
+    
+    let southAmerica = Color("#694146")
+    
+    let australia = Color("#428083")
+    
+    let africa = Color("#479F65")
+    
+    let antarctica = Color("#BEBEBE")
+    
 }
