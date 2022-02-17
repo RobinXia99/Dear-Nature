@@ -12,7 +12,7 @@ import Firebase
 class UserViewModel: ObservableObject {
     
     var auth = Auth.auth()
-    var db = DatabaseModel()
+    var postService = PostService()
     @Published var userPosts = [Post]()
     @Published var following = 0
     @Published var followers = 0
@@ -20,7 +20,7 @@ class UserViewModel: ObservableObject {
     
     func getUserPosts(user: User?) {
         guard user != nil else { return }
-        db.getUserPosts(user: user) { snapshot in
+        postService.getUserPosts(user: user) { snapshot in
             guard let snapshot = snapshot else {
                 return
             }
@@ -49,7 +49,7 @@ class UserViewModel: ObservableObject {
      }
     
     func follow(userId: String) {
-        db.follow(userId: userId) { completion in
+        postService.follow(userId: userId) { completion in
             if completion && self.isFollowing == false {
                 print("followed")
                 self.isFollowing = true
@@ -60,7 +60,7 @@ class UserViewModel: ObservableObject {
     }
     
     func unfollow(userId: String) {
-        db.unfollow(userId: userId) { completion in
+        postService.unfollow(userId: userId) { completion in
             if completion && self.isFollowing == true {
                 print("unfollowed")
                 self.isFollowing = false
@@ -71,7 +71,7 @@ class UserViewModel: ObservableObject {
     
     func getFollowage(userId: String) {
         
-        db.checkFollowage(userId: userId) { followage in
+        postService.checkFollowage(userId: userId) { followage in
             self.followers = followage.followers.count
             self.following = followage.following.count
             self.isFollowing = false

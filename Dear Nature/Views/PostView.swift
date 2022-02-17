@@ -67,7 +67,7 @@ struct ImagePreviewView: View {
     @Binding var showingImagePreview: Bool
     @State var caption = ""
     var themes = Themes()
-    var db = DatabaseModel()
+    var postService = PostService()
     
     var body: some View {
         
@@ -133,7 +133,7 @@ struct ImagePreviewView: View {
     func uploadPost() {
         guard inputImage != nil else { return }
 
-        db.makePost(image: inputImage, caption: caption)
+        postService.makePost(image: inputImage, caption: caption)
         showingImagePreview = false
         
     }

@@ -13,6 +13,8 @@ struct ProfileView: View {
     @EnvironmentObject var authHandler: AuthViewModel
     @State var pickerSelection = "photos"
     @StateObject var userViewModel = UserViewModel()
+    @StateObject var mapViewModel = MapViewModel()
+    @StateObject var mapInspectViewModel = MapInspectViewModel()
     
     
     var themes = Themes()
@@ -41,13 +43,15 @@ struct ProfileView: View {
                     if pickerSelection == "photos" {
                         UserPostsGrid(userViewModel: userViewModel, user: authHandler.session!)
                     } else {
-                        EmptyView()
+                        FeaturedMapsGrid(mapInspectViewModel: mapInspectViewModel, user: authHandler.session!)
                     }
                 }
             }
+            .padding(.bottom,85)
             .ignoresSafeArea()
             .onAppear {
                 userViewModel.getUserPosts(user: authHandler.session)
+                mapInspectViewModel.retrieveUsersMaps(user: authHandler.session)
             }
 
             

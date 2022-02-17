@@ -20,7 +20,11 @@ struct GetStartedView: View {
     var body: some View {
         ZStack {
             VStack {
-                LinearGradient(gradient: theme.greenGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2).overlay {
+                Color.white
+                    .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75)
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
+                    .overlay {
                     
                     VStack {
                         Group {
@@ -55,9 +59,9 @@ struct GetStartedView: View {
                 }, label: {
                     Text("Continue")
                         .font(.title3)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .padding().frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.056)
-                        .background(.white)
+                        .background(theme.pinkTheme)
                         .cornerRadius(15)
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                 })
@@ -136,9 +140,9 @@ struct SelectPhotoView: View {
             }, label: {
                 Text("Select Photo")
                     .font(.title3)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding().frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.042)
-                    .background(.white)
+                    .background(theme.pinkTheme)
                     .cornerRadius(15)
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
             })

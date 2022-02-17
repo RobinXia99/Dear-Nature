@@ -22,7 +22,17 @@ struct DiscoverView: View {
                     SearchBar(searchText: $searchText, isSearching: $isSearching, listOfUsers: $listOfUsers)
 
                     ScrollView {
-                        EventSlideShow()
+                        VStack {
+                            EventSlideShow()
+                            HStack {
+                                Text("Maps")
+                                    .font(.title)
+                                    .padding()
+                                Spacer()
+                            }
+                            
+                        }
+
                     }
                     Spacer()
                 }
@@ -113,9 +123,14 @@ struct SearchBar: View {
 }
 
 
-struct DiscoverView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiscoverView()
+struct mapScrollView: View {
+    var body: some View {
+        ScrollView (.horizontal) {
+            HStack {
+                
+                
+                
+            }
+        }.frame(width: <#T##CoreGraphics.CGFloat?#>, height: <#T##CoreGraphics.CGFloat?#>, alignment: <#T##SwiftUI.Alignment#>)
     }
 }
-
