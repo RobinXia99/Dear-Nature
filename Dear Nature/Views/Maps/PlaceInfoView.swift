@@ -9,16 +9,21 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PlaceInfoView: View {
+    
+    @ObservedObject var mapViewModel: MapViewModel
     @State private var showInfo = false
-    @State var place: Place
+    @Binding var showingPlaceSettings: Bool
+    
+    
+    var place: Place
     var theme = Themes()
     
     var body: some View {
         ZStack {
             
-            Image(systemName: "mappin")
+            Image(systemName: place.markerSymbol)
                 .font(.largeTitle)
-                .foregroundColor(.red)
+                .foregroundColor(getMarkerColor(symbol: place.markerSymbol))
                 .shadow(color: .black.opacity(0.2), radius: 1, x: 1, y: 1)
             
             if showInfo {
@@ -29,7 +34,7 @@ struct PlaceInfoView: View {
                     .overlay {
                         VStack {
                             HStack {
-                                WebImage(url: URL(string: place.placeImage ?? ""))
+                                WebImage(url: URL(string: place.placeImage))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 44, height: 44)
@@ -45,15 +50,25 @@ struct PlaceInfoView: View {
                                 Text(place.name)
                                     .font(.body)
                                     .padding(.top)
+                                    .padding(.leading,5)
                                 Spacer()
                                 
                                 Button(action: {
+                                    showingPlaceSettings = true
                                     
                                 }) {
                                     Image(systemName: "square.and.pencil")
                                         .font(.title2)
                                         .foregroundColor(theme.pinkTheme)
                                 }
+                                .fullScreenCover(isPresented: $showingPlaceSettings) {
+                                    ZStack {
+                                        PlaceSettingsView(mapViewModel: mapViewModel, showingPlaceSettings: $showingPlaceSettings, place: place)
+                                            .background(BackgroundClearView().ignoresSafeArea())
+                                    }
+                                    
+                                }
+                                
                                 
                                     
                                 
@@ -93,4 +108,21 @@ struct PlaceInfoView: View {
             }
         }
     }
+    
+    func getMarkerColor(symbol: String) -> Color {
+        
+        switch symbol {
+        case "mappin":
+            return Color.red
+        case "drop.fill":
+            return Color.blue
+        case "pawprint.fill":
+            return Color.brown
+        case "leaf.fill":
+            return Color.green
+        default:
+            return Color.black
+        }
+    }
+    
 }

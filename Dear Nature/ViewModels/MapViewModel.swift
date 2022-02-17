@@ -14,17 +14,23 @@ class MapViewModel: ObservableObject {
     
     @Published var currentMap: UserMap? = nil
     @Published var myMaps = [UserMap]()
+    @Published var currentMapPlaces: [Place]? = nil
     var mapService = MapService()
     
     func getUserMaps() {
         mapService.loadMaps { mapList in
             self.myMaps = mapList
             
+            if self.currentMap != nil {
+                if let map = self.myMaps.first(where: {$0.id == self.currentMap?.id}) {
+                    self.currentMap = map
+                } else {
+                   print("couldnt update map")
+                }
+            }
+            
+            
         }
-    }
-    
-    func addTestPin() {
-        self.myMaps[0].places.append(Place(name: "Nice Place", markerSymbol: "mappin", placeInfo: "This is a cool place", latitude: 37.33233141, longitude: -122.0312186))
     }
     
     func updateCurrentMap(newMapName: String, newRegion: String, isPublic: Bool, mapImage: UIImage?, completion: @escaping (_ success: Bool) -> Void) {
@@ -54,10 +60,45 @@ class MapViewModel: ObservableObject {
         }
     }
     
-    func placeMarker(location: CLLocationCoordinate2D?) {
+    func getPlaces() {
+        guard let currentMap = currentMap else { return }
+        
+        mapService.getPlaces(map: currentMap) { places in
+            self.currentMapPlaces = places
+        }
+    }
+    
+    func placeMarker(latitude: Double, longitude: Double) {
+        guard let currentMap = currentMap else { return }
+        
+        let newPlace = Place(name: "New Place!", placeImage: "", markerSymbol: "mappin", placeInfo: "", latitude: latitude, longitude: longitude, mapID: currentMap.id!)
+        
+        mapService.createPlace(map: currentMap, place: newPlace) { _ in
+            
+        }
+        
+        
+    }
+    
+    func editPlace(place: Place, placeName: String, placeImage: UIImage?, markerSymbol: String, placeInfo: String, completion: @escaping (_ success: Bool) -> Void) {
         guard let currentMap = currentMap else { return }
 
         
+        mapService.updatePlace(map: currentMap, place: place, placeName: placeName, markerSymbol: markerSymbol, placeInfo: placeInfo, placeImage: placeImage) { _ in
+            print("successfully updated place")
+            completion(true)
+        }
+        
+    }
+    
+    func deletePlace(place: Place, completion: @escaping (_ success: Bool) -> Void) {
+        
+        guard let currentMap = currentMap else { return }
+        
+        mapService.deletePlace(place: place, map: currentMap) { _ in
+            print("place deleted")
+            completion(true)
+        }
         
     }
     

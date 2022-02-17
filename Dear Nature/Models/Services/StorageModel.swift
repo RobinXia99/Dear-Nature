@@ -51,7 +51,7 @@ class StorageModel {
         
         storageRef.delete { err in
             if let err = err {
-                print("could not delete image")
+                print("could not delete image: \(err)")
             } else {
                 print("image successfully deleted")
             }

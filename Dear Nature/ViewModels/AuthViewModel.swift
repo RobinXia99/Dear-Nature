@@ -95,7 +95,7 @@ class AuthViewModel: ObservableObject {
         GIDSignIn.sharedInstance.signIn(with: config, presenting: rootViewController) { [unowned self] user, error in
             
             if let error = error {
-                // ...
+                print("could not sign in w google: \(error)")
                 return
             }
             

@@ -52,7 +52,7 @@ class DatabaseModel {
         
         guard self.auth.currentUser != nil else { return }
         
-        let listener = db.collection("users").document(userId)
+        db.collection("users").document(userId)
             .addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")

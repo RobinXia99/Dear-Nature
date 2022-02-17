@@ -55,6 +55,7 @@ struct SearchBar: View {
         HStack {
             HStack{
                 TextField("Search...", text: $searchText)
+                    .disableAutocorrection(true)
                     .padding(.leading,24)
 
             }.padding()

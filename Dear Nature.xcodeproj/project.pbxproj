@@ -226,7 +226,7 @@
 		0061DD1F2796D53500C05351 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00AF328727B6B85D001F9801 /* Firebase Services */,
+				00AF328727B6B85D001F9801 /* Services */,
 				0061DD3F2798680200C05351 /* User.swift */,
 				0061DD4927998A5900C05351 /* ColorExtensions.swift */,
 				00996067279CD7BB001E39FA /* Themes.swift */,
@@ -235,7 +235,6 @@
 				002EAC3E27B49A9F003EB9F1 /* Followage.swift */,
 				00AF327A27B55467001F9801 /* Place.swift */,
 				00AF327C27B5555F001F9801 /* UserMap.swift */,
-				00AF327E27B69C30001F9801 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,14 +310,15 @@
 			path = Maps;
 			sourceTree = "<group>";
 		};
-		00AF328727B6B85D001F9801 /* Firebase Services */ = {
+		00AF328727B6B85D001F9801 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				001B021627AAF0BB0078D827 /* StorageModel.swift */,
 				0061DD392796F8D700C05351 /* DatabaseModel.swift */,
 				009D977727B895AA00338882 /* MapService.swift */,
+				00AF327E27B69C30001F9801 /* LocationManager.swift */,
 			);
-			path = "Firebase Services";
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
