@@ -10,9 +10,10 @@ import SDWebImageSwiftUI
 
 struct OtherProfileView: View {
     
-    @State var user: User
+    var user: User
     @State var pickerSelection = "photos"
     @ObservedObject var userViewModel: UserViewModel
+    @ObservedObject var mapInspectViewModel: MapInspectViewModel
     @Environment(\.presentationMode) var presentationMode
     
     
@@ -38,15 +39,17 @@ struct OtherProfileView: View {
                     
                     
                     if pickerSelection == "photos" {
-                        UserPostsGrid(userViewModel: userViewModel, user: user)
+                        UserPostsGrid(userViewModel: userViewModel)
                     } else {
-                        EmptyView()
+                        UserMapsGrid(mapInspectViewModel: mapInspectViewModel)
                     }
                 }
             }
+            .padding(.bottom,90)
             .ignoresSafeArea()
             .onAppear {
                 userViewModel.getUserPosts(user: user)
+                mapInspectViewModel.retrieveUsersMaps(user: user)
             }
 
             

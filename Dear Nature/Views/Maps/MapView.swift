@@ -20,36 +20,42 @@ struct MapView: View {
     @State var isShowingAnotherView = false
     @State var updatingLocation = false
     @State var showingPlaceSettings = false
+    @State var userTrackingMode: MapUserTrackingMode = .none
     
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.33233141, longitude: -122.0312186), span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04))
+    
+    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.31086991759319, longitude: 18.02968330944866), span: MKCoordinateSpan(latitudeDelta: 0.04, longitudeDelta: 0.04))
     
     var body: some View {
         ZStack {
             
-            if let currentMap = mapViewModel.currentMap {
-                Map(coordinateRegion: $region, interactionModes: [.all], showsUserLocation: showUserLocation, userTrackingMode: .constant(.follow), annotationItems: currentMap.places) { place in
+            
+            
+            if mapViewModel.currentMapPlaces != nil {
+                Map(coordinateRegion: $region, interactionModes: [.all], showsUserLocation: showUserLocation, userTrackingMode: $userTrackingMode, annotationItems: mapViewModel.currentMapPlaces!) { place in
                     
                    // MapPin(coordinate: place.coordinate)
                     MapAnnotation(coordinate: place.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
-                        PlaceInfoView(place: place)
+                        PlaceInfoView(mapViewModel: mapViewModel, showingPlaceSettings: $showingPlaceSettings, place: place )
                     }
          
-                }.ignoresSafeArea()
+                }
+                .ignoresSafeArea()
+                
+                
             } else {
-                Map(coordinateRegion: $region, interactionModes: [.all], showsUserLocation: showUserLocation, userTrackingMode: .constant(.follow))
+                Map(coordinateRegion: $region, interactionModes: [.all], showsUserLocation: showUserLocation)
                     .ignoresSafeArea()
             }
             
             if !isShowingAnotherView {
-                MenuBar(locationManager: locationManager, showingMapList: $showingMapList, showingMapSettings: $showingMapSettings, updatingLocation: $updatingLocation, showUserLocation: $showUserLocation)
+                MenuBar(locationManager: locationManager, showingMapList: $showingMapList, showingMapSettings: $showingMapSettings, updatingLocation: $updatingLocation, showUserLocation: $showUserLocation, userTrackingMode: $userTrackingMode)
             }
 
-            if mapViewModel.currentMap != nil {
+            if mapViewModel.currentMap != nil && showingPlaceSettings == false && showingMapSettings == false {
                 VStack {
                     Spacer()
                     Button(action: {
-                        showingPlaceSettings = true
-                        mapViewModel.addTestPin()
+                        placeMarker()
                     }, label: {
                         HStack (spacing: 5) {
                             Text("Place Marker")
@@ -67,7 +73,7 @@ struct MapView: View {
                     }).padding(.bottom, 55)
                 }
             }
-            
+
             
         }
         .onAppear {
@@ -77,7 +83,7 @@ struct MapView: View {
         .fullScreenCover(isPresented: $showingMapList) {
             ZStack {
                 Color.black.opacity(0.74).ignoresSafeArea()
-                MapSelectView(mapViewModel: mapViewModel, showingMapList: $showingMapList)
+                MapSelectView(mapViewModel: mapViewModel, showingMapList: $showingMapList, region: $region)
                     .background(BackgroundClearView().ignoresSafeArea())
             }
             
@@ -89,23 +95,27 @@ struct MapView: View {
             }
             
         }
-        .fullScreenCover(isPresented: $showingPlaceSettings) {
-            ZStack {
-                PlaceSettingsView(mapViewModel: mapViewModel, showingPlaceSettings: $showingPlaceSettings)
-                    .background(BackgroundClearView().ignoresSafeArea())
-            }
-            
-        }
+        
         
     }
+    
+    
+    
+    func placeMarker() {
+        guard let latitude = locationManager.location?.latitude, let longitude = locationManager.location?.longitude else { return }
+        mapViewModel.placeMarker(latitude: latitude, longitude: longitude)
+    }
+
 }
 
 struct MenuBar: View {
+    let theme = Themes()
     var locationManager: LocationManager
     @Binding var showingMapList: Bool
     @Binding var showingMapSettings: Bool
     @Binding var updatingLocation: Bool
     @Binding var showUserLocation: Bool
+    @Binding var userTrackingMode: MapUserTrackingMode
     var body: some View {
         VStack {
             HStack {
@@ -124,7 +134,7 @@ struct MenuBar: View {
                                     Image(systemName: "map.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -134,7 +144,7 @@ struct MenuBar: View {
                                     Image(systemName: "gearshape.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -143,16 +153,18 @@ struct MenuBar: View {
                                         locationManager.stopUpdatingLocation()
                                         showUserLocation = false
                                         updatingLocation = false
+                                        userTrackingMode = .none
                                     } else {
                                         locationManager.startUpdatingLocation()
                                         showUserLocation = true
                                         updatingLocation = true
+                                        userTrackingMode = .follow
                                     }
                                 }) {
                                     Image(systemName: updatingLocation ? "location.fill": "location.slash.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -162,7 +174,7 @@ struct MenuBar: View {
                                     Image(systemName: "magnifyingglass.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                             }
@@ -175,14 +187,4 @@ struct MenuBar: View {
     }
 }
 
-struct PlaceSelector: View {
-    var body: some View {
-        Text("")
-    }
-}
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}

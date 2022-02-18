@@ -46,6 +46,7 @@ struct MapSettingsView: View {
                             }.padding(.leading)
                             
                             TextField("Map Name", text: $mapNameText)
+                                .disableAutocorrection(true)
                                 .multilineTextAlignment(.center)
                                 .font(.title3)
                                 .frame(width: UIScreen.main.bounds.width * 0.5)

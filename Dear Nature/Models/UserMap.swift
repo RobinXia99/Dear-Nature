@@ -8,12 +8,12 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct UserMap: Identifiable, Codable {
+struct UserMap: Identifiable, Codable, Equatable, Hashable {
     
     
     @DocumentID var id : String?
     var uid: String = ""
-    var places: [Place] = [Place]()
+    var places: [String] = [String]()
     var mapImage: String = ""
     var mapName: String = "Map Name"
     var isPublic: Bool = true

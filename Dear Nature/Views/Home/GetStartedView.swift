@@ -20,18 +20,22 @@ struct GetStartedView: View {
     var body: some View {
         ZStack {
             VStack {
-                LinearGradient(gradient: theme.greenGradient, startPoint: .top, endPoint: .bottom).frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75).cornerRadius(15).shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2).overlay {
+                Color.white
+                    .frame(width: UIScreen.main.bounds.width * 0.95, height: UIScreen.main.bounds.height * 0.75)
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
+                    .overlay {
                     
                     VStack {
                         Group {
                             Text("Welcome \(getFirstName())!")
                                 .font(.largeTitle)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding(.top,35)
                             
                             Text("Almost there!")
                                 .font(.body)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding(.bottom,15)
                         }
                         
@@ -55,9 +59,9 @@ struct GetStartedView: View {
                 }, label: {
                     Text("Continue")
                         .font(.title3)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .padding().frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.056)
-                        .background(.white)
+                        .background(theme.pinkTheme)
                         .cornerRadius(15)
                         .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                 })
@@ -121,7 +125,7 @@ struct SelectPhotoView: View {
         VStack {
             Text("Profile Picture")
                 .font(.title)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             
             image
                 .resizable()
@@ -136,9 +140,9 @@ struct SelectPhotoView: View {
             }, label: {
                 Text("Select Photo")
                     .font(.title3)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding().frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.042)
-                    .background(.white)
+                    .background(theme.pinkTheme)
                     .cornerRadius(15)
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
             })
@@ -161,14 +165,15 @@ struct SelectPhotoView: View {
 
 struct SelectUsernameView: View {
     @Binding var username: String
+    var theme = Themes()
     var body: some View {
         VStack {
             Text("Username")
                 .font(.title)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             Text("Your username is your own unique identifier that will be linked to your account")
                 .font(.body)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .frame(width: UIScreen.main.bounds.width * 0.85)
                 .multilineTextAlignment(.center)
             TextField("", text: $username)
@@ -177,15 +182,16 @@ struct SelectUsernameView: View {
                 .background(.white)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: -1)
                 .cornerRadius(15)
+                .overlay {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(theme.textFieldGrey!, lineWidth: 1)
+                            .shadow(radius: 1)
+                    }
+                }
                 .autocapitalization(.none)
             
             
         }
-    }
-}
-
-struct GetStartedView_Previews: PreviewProvider {
-    static var previews: some View {
-        GetStartedView(isNewUser: .constant(false))
     }
 }

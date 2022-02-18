@@ -1,20 +1,16 @@
 //
-//  PlaceInfoView.swift
+//  PlaceInfoNoEdit.swift
 //  Dear Nature
 //
-//  Created by Robin Xia on 2022-02-16.
+//  Created by Robin Xia on 2022-02-17.
 //
 
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct PlaceInfoView: View {
-    
-    @ObservedObject var mapViewModel: MapViewModel
+struct PlaceInfoNoEdit: View {
+    @ObservedObject var mapInspectViewModel: MapInspectViewModel
     @State private var showInfo = false
-    @Binding var showingPlaceSettings: Bool
-    
-    
     var place: Place
     var theme = Themes()
     
@@ -52,27 +48,7 @@ struct PlaceInfoView: View {
                                     .padding(.top)
                                     .padding(.leading,5)
                                 Spacer()
-                                
-                                Button(action: {
-                                    showingPlaceSettings = true
-                                    
-                                }) {
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.title2)
-                                        .foregroundColor(theme.pinkTheme)
-                                }
-                                .fullScreenCover(isPresented: $showingPlaceSettings) {
-                                    ZStack {
-                                        PlaceSettingsView(mapViewModel: mapViewModel, showingPlaceSettings: $showingPlaceSettings, place: place)
-                                            .background(BackgroundClearView().ignoresSafeArea())
-                                    }
-                                    
-                                }
-                                
-                                
-                                    
-                                
-                                
+
                                 
                             }
                             .frame(width: UIScreen.main.bounds.width * 0.52, height: UIScreen.main.bounds.height * 0.05)

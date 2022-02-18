@@ -7,10 +7,13 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import MapKit
 
 struct MapSelectView: View {
+    let theme = Themes()
     @ObservedObject var mapViewModel: MapViewModel
     @Binding var showingMapList: Bool
+    @Binding var region: MKCoordinateRegion
     var mapService = MapService()
     var body: some View {
         ZStack {
@@ -31,9 +34,13 @@ struct MapSelectView: View {
                 Text("My Maps")
                     .font(.title)
                     .foregroundColor(.white)
+                
                 CustomDivider()
-                MapList(mapViewModel: mapViewModel, showingMapList: $showingMapList)
+                
+                MapList(mapViewModel: mapViewModel, showingMapList: $showingMapList, region: $region)
+                
                 CustomDivider()
+                
                 HStack {
                     Text("\(mapViewModel.myMaps.count)/10")
                         .foregroundColor(.white)
@@ -49,8 +56,7 @@ struct MapSelectView: View {
                         
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(.pink,.white)
+                            .foregroundColor(.white)
                             .font(.system(size: 50))
                     }.padding()
                 }
@@ -60,15 +66,13 @@ struct MapSelectView: View {
         }
     }
     
-    func addNewMap() {
-        
-    }
     
 }
 
 struct MapList: View {
     @ObservedObject var mapViewModel: MapViewModel
     @Binding var showingMapList: Bool
+    @Binding var region: MKCoordinateRegion
     var theme = Themes()
     var body: some View {
         ScrollView {
@@ -143,7 +147,10 @@ struct MapList: View {
                     .padding(.top,8)
                     .onTapGesture {
                         mapViewModel.currentMap = map
+                        mapViewModel.getPlaces()
                         showingMapList = false
+                        changeRegion()
+                        
                     }
                 
             }
@@ -172,6 +179,32 @@ struct MapList: View {
             return theme.australia!
         default:
             return theme.international!
+        }
+    }
+    
+    func changeRegion() {
+        if mapViewModel.currentMap != nil {
+            switch mapViewModel.currentMap?.region {
+            case "International":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.31086991759319, longitude: 18.02968330944866), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 180))
+            case "Asia":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45.467910, longitude: 92.626292), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+                print("asia")
+            case "Europe":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.809798, longitude: 23.527997), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            case "Africa":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 4.520489, longitude: 22.054558), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            case "South America":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -16.151880, longitude: -59.905403), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            case "North America":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 48.053033, longitude: -104.860522), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            case "Antarctica":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -76.240113, longitude: 23.553510), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            case "Australia":
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -25.848859, longitude: 134.422318), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+            default:
+                self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.31086991759319, longitude: 18.02968330944866), span: MKCoordinateSpan(latitudeDelta: 90, longitudeDelta: 180))
+            }
         }
     }
 

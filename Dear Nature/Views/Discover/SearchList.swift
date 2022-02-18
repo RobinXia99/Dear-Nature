@@ -14,12 +14,13 @@ struct SearchList: View {
     @Binding var searchText: String
     @Binding var listOfUsers: [User]
     @StateObject var userViewModel = UserViewModel()
+    @StateObject var mapInspectViewModel = MapInspectViewModel()
     
     var body: some View {
         List {
             ForEach(searchResults) { user in
                 NavigationLink {
-                    OtherProfileView(user: user, userViewModel: userViewModel)
+                    OtherProfileView(user: user, userViewModel: userViewModel, mapInspectViewModel: mapInspectViewModel)
                 } label: {
                     HStack {
                         WebImage(url: URL(string: user.profileImageUrl ?? ""))

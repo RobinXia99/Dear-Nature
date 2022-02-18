@@ -76,7 +76,7 @@ struct ProfileHeader: View {
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
-                        Text("88M")
+                        Text("0")
                             .foregroundColor(.black)
                     }
                     Spacer()
@@ -85,6 +85,7 @@ struct ProfileHeader: View {
                 
             }.onAppear {
                 userViewModel.getFollowage(userId: user.uid)
+                print("profileheader onappear")
             }
             
         
@@ -106,7 +107,7 @@ struct ProfileHeader: View {
 }
 
 struct FollowButton: View {
-    
+    let theme = Themes()
     @ObservedObject var userViewModel: UserViewModel
     var userId : String
     var body: some View {
@@ -120,9 +121,9 @@ struct FollowButton: View {
         }, label: {
             Text(userViewModel.isFollowing ? "Unfollow": "Follow")
                 .font(.body)
-                .foregroundColor(userViewModel.isFollowing ? .pink: .white)
+                .foregroundColor(userViewModel.isFollowing ? theme.pinkTheme: .white)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.32, height: UIScreen.main.bounds.height * 0.038)
-                .background(userViewModel.isFollowing ? .white: .pink)
+                .background(userViewModel.isFollowing ? .white: theme.pinkTheme)
                 .cornerRadius(15)
                 .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
         }).padding()
@@ -130,6 +131,7 @@ struct FollowButton: View {
 }
 
 struct EditProfileButton: View {
+    let theme = Themes()
     var body: some View {
         Button(action: {
             print()
@@ -138,7 +140,7 @@ struct EditProfileButton: View {
                 .font(.body)
                 .foregroundColor(.white)
                 .padding().frame(width: UIScreen.main.bounds.width * 0.32, height: UIScreen.main.bounds.height * 0.038)
-                .background(.pink)
+                .background(theme.pinkTheme)
                 .cornerRadius(15)
                 .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
         }).padding()
