@@ -331,5 +331,40 @@ class MapService {
         }
         
     }
+    
+    func getPublicMaps(completion: @escaping (_ maps: [UserMap]) -> Void) {
+        
+        var mapList = [UserMap]()
+        
+        db.collection("maps").whereField("isPublic", isEqualTo: true).getDocuments { snapshot, err in
+            if let err = err {
+                print("error getting maps \(err)")
+                return
+            } else {
+                if let snapshot = snapshot {
+                    
+                    for document in snapshot.documents {
+                        let result = Result {
+                            try document.data(as: UserMap.self)
+                        }
+                        switch result {
+                        case .success(let map):
+                            if let map = map {
+                                if map.isPublic {
+                                    mapList.append(map)
+                                }
+                            } else {
+                                print("map not added")
+                            }
+                        case .failure(let error):
+                            print("error reading maps: \(error)")
+                        }
+                    }
+                    completion(mapList)
+                }
+            }
+        }
+        
+    }
 
 }

@@ -15,7 +15,6 @@ struct UserPostsGrid: View {
     @EnvironmentObject var authHandler: AuthViewModel
     @State var showingPostView = false
     @State var scrollIndex = 0
-    var user: User
     
     var columnGrid: [GridItem] = [GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1), GridItem(.flexible(), spacing: 1)]
     
@@ -36,7 +35,7 @@ struct UserPostsGrid: View {
                     .fullScreenCover(isPresented: $showingPostView) {
                         ZStack {
                             Color.black.opacity(0.74).ignoresSafeArea()
-                            DetailedPostView(showingPostView: $showingPostView, userViewModel: userViewModel, scrollIndex: $scrollIndex, user: user )
+                            DetailedPostView(showingPostView: $showingPostView, userViewModel: userViewModel, scrollIndex: $scrollIndex)
                                 .background(BackgroundClearView().ignoresSafeArea())
                         }
                         

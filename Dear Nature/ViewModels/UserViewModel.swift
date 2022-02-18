@@ -48,6 +48,14 @@ class UserViewModel: ObservableObject {
         }
      }
     
+    func getAllPosts() {
+        
+        postService.getAllPosts { postsList in
+            self.userPosts = postsList
+        }
+        
+    }
+    
     func follow(userId: String) {
         postService.follow(userId: userId) { completion in
             if completion && self.isFollowing == false {
@@ -71,20 +79,18 @@ class UserViewModel: ObservableObject {
     
     func getFollowage(userId: String) {
         
+        guard let uid = auth.currentUser?.uid else { return }
+        
         postService.checkFollowage(userId: userId) { followage in
             self.followers = followage.followers.count
             self.following = followage.following.count
             self.isFollowing = false
             
-            for i in followage.followers {
-                if self.auth.currentUser?.uid == i {
-                    self.isFollowing = true
-                    print("isFollowing: \(self.isFollowing)")
-                } else {
-                    self.isFollowing = false
-                    print("isFollowing: \(self.isFollowing)")
-                }
+            if followage.followers.contains(uid) {
+                self.isFollowing = true
+                print("isFollowing: \(self.isFollowing)")
             }
+
         }
     }
     

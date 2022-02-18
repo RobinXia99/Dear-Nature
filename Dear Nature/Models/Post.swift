@@ -16,5 +16,7 @@ struct Post: Codable, Identifiable, Hashable {
     var likes: [String] = [String]()
     var postImage: String = ""
     var date: String = ""
+    var userName: String = ""
+    var userProfileImage: String = ""
     
 }

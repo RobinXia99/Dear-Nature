@@ -28,7 +28,7 @@ struct ProfileView: View {
                         Image("whiteborder")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.38)
-                        ProfileHeader(user: authHandler.session!, userViewModel: userViewModel)
+                        ProfileHeader(user: authHandler.session ?? returnUserIfNil(), userViewModel: userViewModel)
 
                         Spacer()
                     }
@@ -41,13 +41,13 @@ struct ProfileView: View {
                     
                     
                     if pickerSelection == "photos" {
-                        UserPostsGrid(userViewModel: userViewModel, user: authHandler.session!)
+                        UserPostsGrid(userViewModel: userViewModel)
                     } else {
-                        FeaturedMapsGrid(mapInspectViewModel: mapInspectViewModel, user: authHandler.session!)
+                        UserMapsGrid(mapInspectViewModel: mapInspectViewModel)
                     }
                 }
             }
-            .padding(.bottom,85)
+            .padding(.bottom,90)
             .ignoresSafeArea()
             .onAppear {
                 userViewModel.getUserPosts(user: authHandler.session)
@@ -58,20 +58,49 @@ struct ProfileView: View {
             
             .navigationBarTitle("@\(authHandler.session?.username ?? "@Username")", displayMode: .inline)
             .toolbar {
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "list.bullet.circle.fill")
-                            .font(.title2)
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(.white,.black.opacity(0.6))
+                    HStack {
+                    Spacer()
+                        Button(action: {
                             
-                    })
+                        }, label: {
+                            Image(systemName: "sun.max.circle.fill")
+                                .font(.title2)
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(.white,.black.opacity(0.6))
+                                
+                        })
+                        
+                        Button(action: {
+                            do {
+                                try authHandler.auth.signOut()
+                                authHandler.isSignedIn = false
+                                authHandler.session = nil
+                            } catch {
+                                
+                            }
+                        }, label: {
+                            Image(systemName: "list.bullet.circle.fill")
+                                .font(.title2)
+                                .symbolRenderingMode(.palette)
+                                .foregroundStyle(.white,.black.opacity(0.6))
+                                
+                        })
+                    }
+                    
                 }
+                
+
             }
         }
     }
+    
+    func returnUserIfNil() -> User {
+        let newUser = User(uid: "yes", email: "hey")
+        return newUser
+    }
+    
 }
 
 

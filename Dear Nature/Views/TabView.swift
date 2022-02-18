@@ -52,9 +52,12 @@ struct TabsView: View {
 
 struct TabBar: View {
     
-    let tabBarImages = ["house","safari","plus.app.fill","mappin","person.circle"]
+    let tabBarImages = ["house","safari","plus.app.fill","map.fill","person.circle"]
+    
+    let tabBarTitles = ["Home", "Discover", "", "Maps","Profile"]
     
     @Binding var selectedTab: Int
+    var theme = Themes()
     
     var body: some View {
         HStack {
@@ -68,10 +71,18 @@ struct TabBar: View {
                     
                     if num == 2 {
                         Image(systemName: tabBarImages[num])
-                            .font(.system(size: 45, weight: .bold)).foregroundColor(.black)
+                            .font(.system(size: 45, weight: .bold))
+                            .foregroundColor(theme.pinkTheme)
                     } else {
-                        Image(systemName: tabBarImages[num])
-                            .font(.system(size: 24, weight: .bold)).foregroundColor(selectedTab == num ? Color(.black) : .gray)
+                        VStack {
+                            Image(systemName: tabBarImages[num])
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(selectedTab == num ? theme.pinkTheme : .gray)
+                            Text(tabBarTitles[num])
+                                .font(.footnote)
+                                .foregroundColor(selectedTab == num ? theme.pinkTheme : .gray)
+                        }
+                        
                     }
                     
                     Spacer()
@@ -79,12 +90,12 @@ struct TabBar: View {
                 })
             }
             
-        }.background(.white)
+        }
+        .padding(.top,5)
+        .background(.white)
+        .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
     }
+    
+    
 }
 
-struct TabsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabsView()
-    }
-}

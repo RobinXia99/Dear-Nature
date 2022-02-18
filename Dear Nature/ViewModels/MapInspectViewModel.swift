@@ -32,6 +32,14 @@ class MapInspectViewModel: ObservableObject {
         }
     }
     
+    func retrievePublicMaps() {
+        
+        mapService.getPublicMaps { maps in
+            self.maps = maps
+        }
+        
+    }
+    
     
     
 }

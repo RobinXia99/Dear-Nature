@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 import MapKit
 
 struct MapSelectView: View {
+    let theme = Themes()
     @ObservedObject var mapViewModel: MapViewModel
     @Binding var showingMapList: Bool
     @Binding var region: MKCoordinateRegion
@@ -55,8 +56,7 @@ struct MapSelectView: View {
                         
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(.pink,.white)
+                            .foregroundColor(.white)
                             .font(.system(size: 50))
                     }.padding()
                 }

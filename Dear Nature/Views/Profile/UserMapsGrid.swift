@@ -8,13 +8,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct FeaturedMapsGrid: View {
+struct UserMapsGrid: View {
     
     @ObservedObject var mapInspectViewModel : MapInspectViewModel
     @State var showingMapsView = false
     @State var selectedMap: UserMap? = nil
-    
-    var user: User
     
     var columnGrid: [GridItem] = [GridItem(.flexible(), spacing: 5), GridItem(.flexible(), spacing: 5)]
     
@@ -26,7 +24,7 @@ struct FeaturedMapsGrid: View {
                 
                 WebImage(url: URL(string: map.mapImage))
                     .resizable()
-                    .frame(width: UIScreen.main.bounds.width * 0.45, height: UIScreen.main.bounds.height * 0.15)
+                    .frame(width: UIScreen.main.bounds.width * 0.48, height: UIScreen.main.bounds.height * 0.15)
                     .cornerRadius(10)
                     .overlay {
 
@@ -60,7 +58,7 @@ struct FeaturedMapsGrid: View {
                                         .foregroundColor(.white)
                                         .padding(1)
                                     
-                                }.frame(width: UIScreen.main.bounds.width * 0.45, height: UIScreen.main.bounds.height * 0.05)
+                                }.frame(width: UIScreen.main.bounds.width * 0.48, height: UIScreen.main.bounds.height * 0.05)
                                     .background(.black.opacity(0.66))
                                     .cornerRadius(10)
                             }
@@ -68,8 +66,10 @@ struct FeaturedMapsGrid: View {
                         
                     }.onTapGesture {
                         mapInspectViewModel.retrieveMapPlaces(map: map) { _ in
-                            self.selectedMap = map
-                            showingMapsView = true
+                            if map.isPublic {
+                                self.selectedMap = map
+                                showingMapsView = true
+                            }
                         }
                     }
                     .fullScreenCover(isPresented: $showingMapsView) {

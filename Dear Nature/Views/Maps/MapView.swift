@@ -109,6 +109,7 @@ struct MapView: View {
 }
 
 struct MenuBar: View {
+    let theme = Themes()
     var locationManager: LocationManager
     @Binding var showingMapList: Bool
     @Binding var showingMapSettings: Bool
@@ -133,7 +134,7 @@ struct MenuBar: View {
                                     Image(systemName: "map.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -143,7 +144,7 @@ struct MenuBar: View {
                                     Image(systemName: "gearshape.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -163,7 +164,7 @@ struct MenuBar: View {
                                     Image(systemName: updatingLocation ? "location.fill": "location.slash.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                                 
@@ -173,7 +174,7 @@ struct MenuBar: View {
                                     Image(systemName: "magnifyingglass.circle.fill")
                                         .font(.largeTitle)
                                         .symbolRenderingMode(.palette)
-                                        .foregroundStyle(.pink,.white)
+                                        .foregroundStyle(theme.pinkTheme!,.white)
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 1, y: 1)
                                 }
                             }

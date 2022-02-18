@@ -13,7 +13,6 @@ struct DetailedPostView: View {
     @Binding var showingPostView: Bool
     @ObservedObject var userViewModel : UserViewModel
     @Binding var scrollIndex: Int
-    var user: User
     var body: some View {
         ScrollView(.vertical) {
             ScrollViewReader { position in
@@ -34,7 +33,7 @@ struct DetailedPostView: View {
                     ForEach(Array(userViewModel.userPosts.enumerated()), id: \.element) { index, post in
                         HStack {
                             
-                            WebImage(url: URL(string: user.profileImageUrl ?? ""))
+                            WebImage(url: URL(string: post.userProfileImage ))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 44, height: 44)
@@ -48,7 +47,7 @@ struct DetailedPostView: View {
                                 .padding(.top)
                                 .padding(.leading)
                             
-                            Text("@\(user.username ?? "Username")")
+                            Text("@\(post.userName ?? "Username")")
                                 .foregroundColor(.white)
                                 .padding(.top)
                             

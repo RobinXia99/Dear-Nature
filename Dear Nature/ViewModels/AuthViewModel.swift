@@ -50,9 +50,8 @@ class AuthViewModel: ObservableObject {
         
     }
     
-    func signUp(email: String, password: String, fullName: String, completion:@escaping (Bool) -> ()) {
+    func signUp(email: String, password: String, fullName: String) {
         
-        var didSucceed: Bool = false
         auth.createUser(withEmail: email, password: password) { result, error in
             
             guard result != nil && error == nil else {
@@ -69,8 +68,8 @@ class AuthViewModel: ObservableObject {
                 self.db.createUserEntry(user: user) { result in
                     if result == true {
                         self.session = user
-                        didSucceed.toggle()
-                        completion(didSucceed)
+                        
+                        self.signIn(email: email, password: password)
                     }
                     
                 }

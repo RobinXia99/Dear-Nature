@@ -16,7 +16,7 @@ class PostService {
     private var auth = Auth.auth()
     private let storage = StorageModel()
     
-    func makePost(image: UIImage?, caption: String) {
+    func makePost(image: UIImage?, caption: String, userName: String, profileImageUrl: String) {
         guard let uid = auth.currentUser?.uid, image != nil else { return }
         
         var newPost = Post()
@@ -41,7 +41,9 @@ class PostService {
                                            "caption" : newPost.caption,
                                            "likes" : newPost.likes,
                                          "postImage" : newPost.postImage,
-                                         "date" : newPost.date] as [String : Any]
+                                         "date" : newPost.date,
+                                         "userName": userName,
+                                         "userProfileImage": profileImageUrl] as [String : Any]
                 
                 self.db.collection("posts").addDocument(data: newPostDictionary)
             }
@@ -130,6 +132,72 @@ class PostService {
             
             
             
+        }
+        
+    }
+    
+    func getAllPosts(completion: @escaping (_ postsList: [Post]) -> Void) {
+        
+        var postList = [Post]()
+        
+        db.collection("posts").getDocuments { snapshot, err in
+            if let err = err {
+                print("error getting posts \(err)")
+                return
+            } else {
+                if let snapshot = snapshot {
+                    
+                    for document in snapshot.documents {
+                        let result = Result {
+                            try document.data(as: Post.self)
+                        }
+                        switch result {
+                        case .success(let post):
+                            if let post = post {
+                                    postList.append(post)
+                            } else {
+                                print("post not added")
+                            }
+                        case .failure(let error):
+                            print("error reading posts: \(error)")
+                        }
+                    }
+                    completion(postList)
+                }
+            }
+        }
+        
+    }
+    
+    func getFollowingPosts(uid: String, completion: @escaping (_ postList: [Post]) -> Void) {
+        
+        var postList = [Post]()
+        
+        db.collection("posts").whereField("uid", isEqualTo: uid).getDocuments { snapshot, err in
+            if let err = err {
+                print("error getting posts \(err)")
+                return
+            } else {
+                if let snapshot = snapshot {
+                    
+                    for document in snapshot.documents {
+                        let result = Result {
+                            try document.data(as: Post.self)
+                        }
+                        switch result {
+                        case .success(let post):
+                            if let post = post {
+                                    postList.append(post)
+                            } else {
+                                print("post not added")
+                            }
+                        case .failure(let error):
+                            print("error reading posts: \(error)")
+                        }
+                    }
+                    completion(postList)
+                }
+            }
         }
         
     }

@@ -15,6 +15,7 @@ struct PostView: View {
     @State var showingImagePreview = false
     @State var showingEditView = false
     var themes = Themes()
+    @EnvironmentObject var authHandler: AuthViewModel
 
     
     var body: some View {
@@ -31,7 +32,7 @@ struct PostView: View {
                         .font(.title3)
                         .foregroundColor(.white)
                         .padding().frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.04)
-                        .background(themes.blackButtonColor)
+                        .background(themes.pinkTheme)
                         .cornerRadius(15)
                         .shadow(color: .black, radius: 2, x: 0, y: 2)
                 }
@@ -68,6 +69,7 @@ struct ImagePreviewView: View {
     @State var caption = ""
     var themes = Themes()
     var postService = PostService()
+    @EnvironmentObject var authHandler: AuthViewModel
     
     var body: some View {
         
@@ -108,7 +110,7 @@ struct ImagePreviewView: View {
                         .font(.title3)
                         .foregroundColor(.white)
                         .padding().frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.06)
-                        .background(themes.blackButtonColor)
+                        .background(themes.pinkTheme)
                         .cornerRadius(15)
                         .shadow(color: .black, radius: 2, x: 0, y: 2)
                 }
@@ -133,7 +135,9 @@ struct ImagePreviewView: View {
     func uploadPost() {
         guard inputImage != nil else { return }
 
-        postService.makePost(image: inputImage, caption: caption)
+        guard let username = authHandler.session?.username, let profileImg = authHandler.session?.profileImageUrl else { return }
+        
+        postService.makePost(image: inputImage, caption: caption, userName: username, profileImageUrl: profileImg)
         showingImagePreview = false
         
     }
